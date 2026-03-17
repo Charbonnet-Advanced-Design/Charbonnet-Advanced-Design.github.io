@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charbonnet Advanced Design · CAO & Conception Mécanique</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Barlow+Condensed:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #00b8a6;
+  --teal2: #009688;
+  --teal3: #00796b;
+  --teal-light: #e0f5f2;
+  --teal-xlight: #f0faf9;
+  --navy: #ffffff;
+  --navy2: #f5f7f9;
+  --navy3: #eef1f5;
+  --navy4: #e4e9f0;
+  --light: #1a2332;
+  --muted: #5a6e85;
+  --muted2: #8a9db5;
+  --white: #ffffff;
+  --border: rgba(0,180,165,0.15);
+  --border2: rgba(0,180,165,0.3);
+  --border-gray: rgba(0,0,0,0.08);
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--navy);
+  color: var(--light);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy3); }
+::-webkit-scrollbar-thumb { background: var(--teal2); border-radius: 2px; }
+
+/* ── UTILITY ── */
+.teal { color: var(--teal); }
+.mono { font-family: var(--font-mono); }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+@media(max-width:600px) { .container { padding: 0 20px; } }
+
+/* ── GRID BACKGROUND ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,180,165,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,180,165,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 32px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-gray);
+  transition: all .3s;
+}
+nav.scrolled {
+  background: rgba(255,255,255,0.99);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.08);
+}
+.nav-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-logo-cad {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--teal);
+  letter-spacing: 2px;
+  line-height: 1;
+}
+.nav-logo-full {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--teal); }
+.nav-cta {
+  background: transparent;
+  border: 1px solid var(--teal);
+  color: var(--teal) !important;
+  padding: 7px 18px;
+  border-radius: 3px;
+  transition: all .2s !important;
+}
+.nav-cta:hover {
+  background: var(--teal) !important;
+  color: var(--navy) !important;
+}
+.nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-burger span { width: 22px; height: 2px; background: var(--muted); border-radius: 1px; transition: all .2s; display: block; }
+.nav-mobile { display: none; }
+@media(max-width:768px) {
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  .nav-mobile.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 68px; left: 0; right: 0;
+    background: rgba(255,255,255,0.99);
+    padding: 24px 32px;
+    gap: 20px;
+    border-bottom: 1px solid var(--border-gray);
+    z-index: 99;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .nav-mobile a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    transition: color .2s;
+  }
+  .nav-mobile a:hover { color: var(--teal); }
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 68px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #f0faf9 0%, #ffffff 50%, #f5f7f9 100%);
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.hero-bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+.hero-bg-circle.c1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,184,166,0.1) 0%, transparent 70%);
+  top: -100px; right: -100px;
+}
+.hero-bg-circle.c2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(0,120,200,0.07) 0%, transparent 70%);
+  bottom: 0; left: -80px;
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding: 80px 0;
+}
+@media(max-width:860px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; padding: 60px 0; }
+  .hero-visual { display: none; }
+}
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--teal);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp .6s .1s ease forwards;
+}
+.hero-eyebrow::before {
+  content: '// ';
+  color: var(--muted2);
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 7vw, 82px);
+  font-weight: 800;
+  line-height: .95;
+  letter-spacing: -1px;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp .6s .2s ease forwards;
+}
+.hero-title em {
+  font-style: normal;
+  color: var(--teal);
+  display: block;
+}
+.hero-subtitle {
+  font-size: 17px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp .6s .3s ease forwards;
+}
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp .6s .4s ease forwards;
+}
+.btn-primary {
+  background: var(--teal);
+  color: var(--navy);
+  padding: 14px 32px;
+  border: none;
+  border-radius: 3px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-primary:hover { background: var(--teal2); transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent;
+  color: var(--light);
+  padding: 13px 32px;
+  border: 1px solid var(--muted2);
+  border-radius: 3px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
+
+/* HERO VISUAL — Technical drawing SVG */
+.hero-visual {
+  opacity: 0;
+  animation: fadeIn .8s .5s ease forwards;
+}
+.hero-visual svg { width: 100%; max-width: 480px; }
+
+/* Hero stats */
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 52px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border-gray);
+  opacity: 0;
+  animation: fadeUp .6s .5s ease forwards;
+}
+.hero-stat-num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+}
+
+/* ── SECTION BASE ── */
+section { position: relative; z-index: 1; }
+.section-header { margin-bottom: 60px; }
+.section-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--teal);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+.section-tag::before { content: '// '; color: var(--muted2); }
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -.5px;
+}
+.section-title em { font-style: normal; color: var(--teal); }
+.section-sub {
+  font-size: 16px;
+  color: var(--muted);
+  margin-top: 16px;
+  max-width: 560px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* ── SERVICES ── */
+.services {
+  padding: 120px 0;
+  background: var(--navy2);
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border-gray);
+  border: 1px solid var(--border-gray);
+  border-radius: 8px;
+  overflow: hidden;
+}
+@media(max-width:760px) { .services-grid { grid-template-columns: 1fr; } }
+.service-card {
+  background: #ffffff;
+  padding: 36px 32px;
+  transition: background .2s;
+  cursor: default;
+}
+.service-card:hover { background: var(--teal-xlight); }
+.service-icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 20px;
+  color: var(--teal);
+}
+.service-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted2);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+.service-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--light);
+  letter-spacing: -.3px;
+}
+.service-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-weight: 300;
+}
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 20px;
+}
+.service-tag {
+  font-size: 10px;
+  padding: 3px 9px;
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  color: var(--teal);
+  font-family: var(--font-mono);
+  letter-spacing: .5px;
+}
+
+/* ── WHY ── */
+.why { padding: 120px 0; }
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+@media(max-width:760px) { .why-grid { grid-template-columns: 1fr; gap: 48px; } }
+.why-items { display: flex; flex-direction: column; gap: 0; }
+.why-item {
+  display: flex;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border-gray);
+  transition: all .2s;
+}
+.why-item:first-child { border-top: 1px solid var(--border-gray); }
+.why-item:hover .why-item-icon { color: var(--teal); }
+.why-item-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--teal3);
+  margin-top: 3px;
+  transition: color .2s;
+}
+.why-item-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--light);
+}
+.why-item-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+  font-weight: 300;
+}
+/* Technical spec card */
+.spec-card {
+  background: var(--navy3);
+  border: 1px solid var(--border-gray);
+  border-radius: 8px;
+  padding: 32px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  position: relative;
+  overflow: hidden;
+}
+.spec-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), transparent);
+}
+.spec-header {
+  color: var(--muted2);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-gray);
+}
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+.spec-key { color: var(--muted2); }
+.spec-val { color: var(--teal2); }
+.spec-val.white { color: var(--light); }
+.spec-section-title {
+  color: var(--teal2);
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── PROCESS ── */
+.process {
+  padding: 120px 0;
+  background: var(--navy2);
+}
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+  margin-top: 60px;
+}
+@media(max-width:760px) { .process-steps { grid-template-columns: 1fr 1fr; gap: 24px; } }
+@media(max-width:480px) { .process-steps { grid-template-columns: 1fr; } }
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--teal2), var(--teal2), transparent);
+  z-index: 0;
+}
+@media(max-width:760px) { .process-steps::before { display: none; } }
+.process-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+.process-num {
+  width: 56px;
+  height: 56px;
+  border: 1.5px solid var(--teal);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--teal2);
+  background: #ffffff;
+  margin-bottom: 20px;
+  transition: all .2s;
+}
+.process-step:hover .process-num {
+  background: var(--teal);
+  color: #ffffff;
+  border-color: var(--teal);
+}
+.process-step-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--light);
+}
+.process-step-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+/* ── CIBLES ── */
+.cibles { padding: 120px 0; }
+.cibles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media(max-width:760px) { .cibles-grid { grid-template-columns: 1fr; } }
+.cible-card {
+  background: #ffffff;
+  border: 1px solid var(--border-gray);
+  border-radius: 8px;
+  padding: 32px 28px;
+  transition: all .25s;
+  position: relative;
+  overflow: hidden;
+}
+.cible-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s;
+}
+.cible-card:hover {
+  border-color: rgba(0,184,166,0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,184,166,0.1);
+}
+.cible-card:hover::after { transform: scaleX(1); }
+.cible-icon {
+  font-size: 28px;
+  margin-bottom: 16px;
+  display: block;
+}
+.cible-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--light);
+}
+.cible-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-weight: 300;
+}
+.cible-list {
+  list-style: none;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.cible-list li {
+  font-size: 12px;
+  color: var(--muted);
+  padding-left: 14px;
+  position: relative;
+  font-weight: 400;
+}
+.cible-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-size: 10px;
+}
+
+/* ── CONTACT ── */
+.contact {
+  padding: 120px 0;
+  background: var(--navy2);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: start;
+}
+@media(max-width:860px) { .contact-grid { grid-template-columns: 1fr; gap: 48px; } }
+.contact-info { display: flex; flex-direction: column; gap: 32px; }
+.contact-info-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.contact-info-title em { font-style: normal; color: var(--teal); }
+.contact-info-sub {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-weight: 300;
+}
+.contact-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.contact-item-icon {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--teal);
+  flex-shrink: 0;
+}
+.contact-item-label {
+  font-size: 11px;
+  color: var(--muted2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+  font-family: var(--font-mono);
+}
+.contact-item-val {
+  font-size: 14px;
+  color: var(--light);
+  font-weight: 500;
+}
+.contact-item-val a {
+  color: var(--light);
+  text-decoration: none;
+  transition: color .15s;
+}
+.contact-item-val a:hover { color: var(--teal); }
+
+/* Form */
+.contact-form {
+  background: #ffffff;
+  border: 1px solid var(--border-gray);
+  border-radius: 8px;
+  padding: 36px;
+  position: relative;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.06);
+}
+.contact-form::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), transparent);
+  border-radius: 8px 8px 0 0;
+}
+.form-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--white);
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+@media(max-width:500px) { .form-row { grid-template-columns: 1fr; } }
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.form-group label {
+  font-size: 11px;
+  color: var(--muted2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: var(--font-mono);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--navy2);
+  border: 1px solid var(--border-gray);
+  border-radius: 4px;
+  padding: 11px 14px;
+  color: var(--light);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color .2s;
+  width: 100%;
+}
+.form-group select { cursor: pointer; }
+.form-group select option { background: #ffffff; color: var(--light); }
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--teal);
+  background: #ffffff;
+}
+.form-group textarea { min-height: 100px; resize: vertical; line-height: 1.5; }
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--muted2); }
+.form-submit {
+  width: 100%;
+  background: var(--teal);
+  color: var(--navy);
+  padding: 14px;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.form-submit:hover { background: var(--teal2); transform: translateY(-1px); }
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 20px;
+  color: var(--teal);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.legal-notice {
+  font-size: 11px;
+  color: var(--muted2);
+  text-align: center;
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: #0f1f38;
+  border-top: none;
+  padding: 48px 0 32px;
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 40px;
+}
+@media(max-width:680px) { .footer-inner { grid-template-columns: 1fr; gap: 32px; } }
+.footer-brand-name {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--teal);
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+.footer-brand-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  font-family: var(--font-mono);
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+}
+.footer-brand-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+  font-weight: 300;
+}
+.footer-col-title {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: var(--font-mono);
+  margin-bottom: 16px;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: color .15s;
+}
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-legal {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  font-family: var(--font-mono);
+  line-height: 1.8;
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .4s; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; } 50% { opacity: 0; }
+}
+.cursor::after {
+  content: '_';
+  animation: blink 1s infinite;
+  color: var(--teal);
+}
+
+/* ── BADGE ── */
+.badge-teal {
+  display: inline-block;
+  padding: 3px 10px;
+  background: var(--teal-light);
+  border: 1px solid rgba(0,184,166,0.3);
+  border-radius: 2px;
+  color: var(--teal2);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  letter-spacing: 1px;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-cad">CAD</span>
+    <span class="nav-logo-full">Charbonnet Advanced Design</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pourquoi">Expertise</a></li>
+    <li><a href="#processus">Processus</a></li>
+    <li><a href="#contact" class="nav-cta">Demander un devis</a></li>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-mobile" id="nav-mobile">
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#pourquoi" onclick="closeMobile()">Expertise</a>
+  <a href="#processus" onclick="closeMobile()">Processus</a>
+  <a href="#contact" onclick="closeMobile()">Demander un devis</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-bg-circle c1"></div>
+    <div class="hero-bg-circle c2"></div>
+  </div>
+  <div class="container hero-content">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-eyebrow">Conception Mécanique & Usinage</div>
+        <h1 class="hero-title">
+          Vos pièces,<br>
+          <em>conçues</em><br>
+          pour être<br>usinées.
+        </h1>
+        <p class="hero-subtitle">
+          CAO industrielle, reconstruction de plans, modélisation 3D — livrés directement usinables, par un technicien qui connaît la machine autant que le logiciel.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Demander un devis
+          </a>
+          <a href="#services" class="btn-secondary">Voir les services</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">5+</div>
+            <div class="hero-stat-label">Ans d'expérience</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">3</div>
+            <div class="hero-stat-label">Axes de service</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">100%</div>
+            <div class="hero-stat-label">Usinable garanti</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <!-- Technical drawing SVG -->
+        <svg viewBox="0 0 460 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Grid -->
+          <defs>
+            <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+              <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(0,210,190,0.06)" stroke-width="0.5"/>
+            </pattern>
+          </defs>
+          <rect width="460" height="420" fill="url(#grid)"/>
+          <!-- Main mechanical part outline -->
+          <g stroke="#00b8a6" stroke-width="1.2" fill="none">
+            <!-- Outer body -->
+            <rect x="80" y="80" width="300" height="200" rx="6" stroke-opacity="0.7"/>
+            <!-- Center bore -->
+            <circle cx="230" cy="180" r="55" stroke-opacity="0.9"/>
+            <circle cx="230" cy="180" r="30" stroke-opacity="0.5" stroke-dasharray="4 4"/>
+            <circle cx="230" cy="180" r="5" fill="#00b8a6" fill-opacity="0.8" stroke="none"/>
+            <!-- Bolt holes -->
+            <circle cx="130" cy="130" r="10"/>
+            <circle cx="330" cy="130" r="10"/>
+            <circle cx="130" cy="230" r="10"/>
+            <circle cx="330" cy="230" r="10"/>
+            <!-- Slot top -->
+            <rect x="195" y="80" width="70" height="22" rx="11"/>
+            <!-- Slot bottom -->
+            <rect x="195" y="258" width="70" height="22" rx="11"/>
+            <!-- Keyway -->
+            <rect x="213" y="149" width="34" height="18" rx="2"/>
+          </g>
+          <!-- Dimension lines -->
+          <g stroke="#00b8a6" stroke-width="0.7" stroke-opacity="0.45" fill="#00b8a6" fill-opacity="0.45">
+            <!-- Width dimension -->
+            <line x1="80" y1="320" x2="380" y2="320"/>
+            <line x1="80" y1="315" x2="80" y2="325"/>
+            <line x1="380" y1="315" x2="380" y2="325"/>
+            <line x1="80" y1="280" x2="80" y2="325"/>
+            <line x1="380" y1="280" x2="380" y2="325"/>
+            <!-- Height dimension -->
+            <line x1="30" y1="80" x2="30" y2="280"/>
+            <line x1="25" y1="80" x2="35" y2="80"/>
+            <line x1="25" y1="280" x2="35" y2="280"/>
+            <line x1="30" y1="80" x2="80" y2="80"/>
+            <line x1="30" y1="280" x2="80" y2="280"/>
+            <!-- Center lines -->
+            <line x1="230" y1="60" x2="230" y2="310" stroke-dasharray="8 4" stroke-opacity="0.25"/>
+            <line x1="60" y1="180" x2="400" y2="180" stroke-dasharray="8 4" stroke-opacity="0.25"/>
+            <!-- Radius line -->
+            <line x1="230" y1="180" x2="273" y2="145"/>
+          </g>
+          <!-- Dimension text -->
+          <g font-family="'JetBrains Mono', monospace" fill="#00b8a6" fill-opacity="0.6" font-size="11">
+            <text x="218" y="337" text-anchor="middle">300.00</text>
+            <text x="10" y="186" text-anchor="middle" transform="rotate(-90 10 186)">200.00</text>
+            <text x="258" y="158" font-size="10">Ø55</text>
+            <text x="240" y="200" font-size="10">Ø30</text>
+          </g>
+          <!-- Surface finish symbol -->
+          <g stroke="#00b8a6" stroke-opacity="0.5" fill="none" stroke-width="0.8">
+            <path d="M 400 100 L 420 120 L 440 105"/>
+            <line x1="420" y1="90" x2="420" y2="120"/>
+            <text font-family="'JetBrains Mono', monospace" font-size="9" fill="#00b8a6" fill-opacity="0.5" x="410" y="87">Ra 1.6</text>
+          </g>
+          <!-- Title block -->
+          <rect x="290" y="350" width="160" height="60" stroke="#00b8a6" stroke-opacity="0.3" stroke-width="0.7"/>
+          <line x1="290" y1="367" x2="450" y2="367" stroke="#00b8a6" stroke-opacity="0.3" stroke-width="0.7"/>
+          <line x1="370" y1="350" x2="370" y2="410" stroke="#00b8a6" stroke-opacity="0.3" stroke-width="0.7"/>
+          <text x="300" y="362" font-family="'JetBrains Mono', monospace" font-size="8" fill="#00b8a6" fill-opacity="0.5">NOM</text>
+          <text x="380" y="362" font-family="'JetBrains Mono', monospace" font-size="8" fill="#00b8a6" fill-opacity="0.5">CAD</text>
+          <text x="300" y="382" font-family="'JetBrains Mono', monospace" font-size="8" fill="#00b8a6" fill-opacity="0.4">ÉCHELLE</text>
+          <text x="300" y="396" font-family="'JetBrains Mono', monospace" font-size="9" fill="#00b8a6" fill-opacity="0.7">1:1</text>
+          <text x="380" y="382" font-family="'JetBrains Mono', monospace" font-size="8" fill="#00b8a6" fill-opacity="0.4">RÉV.</text>
+          <text x="380" y="396" font-family="'JetBrains Mono', monospace" font-size="9" fill="#00b8a6" fill-opacity="0.7">A</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Services</span>
+      <h2 class="section-title">Ce que nous réalisons<br><em>pour vous</em></h2>
+      <p class="section-sub">Des prestations adaptées à la réalité industrielle — pas des modèles de bureau, des fichiers prêts à usiner.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+          <circle cx="15.5" cy="15.5" r="2.5"/><path d="M18 18l2 2"/>
+        </svg>
+        <div class="service-title">Reconstruction CAO</div>
+        <div class="service-desc">Vous avez un plan papier, un vieux fichier illisible ou une pièce physique à numériser ? Nous reconstruisons le modèle 3D complet avec cotation et mise en plan.</div>
+        <div class="service-tags">
+          <span class="service-tag">STEP</span>
+          <span class="service-tag">IGES</span>
+          <span class="service-tag">DXF</span>
+          <span class="service-tag">PDF</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+        </svg>
+        <div class="service-title">Conception depuis CDC</div>
+        <div class="service-desc">Vous avez un besoin, un cahier des charges ou même juste une idée ? Nous concevons la pièce en tenant compte de vos machines et procédés d'usinage dès la première esquisse.</div>
+        <div class="service-tags">
+          <span class="service-tag">DFM</span>
+          <span class="service-tag">3D</span>
+          <span class="service-tag">2D</span>
+          <span class="service-tag">TOLERANCES</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        </svg>
+        <div class="service-title">Modification & Optimisation</div>
+        <div class="service-desc">Adaptation d'une CAO existante, modification de cotes, allègement de pièce, changement de matière ou d'ajustement — nous prenons en main votre fichier existant.</div>
+        <div class="service-tags">
+          <span class="service-tag">REVISION</span>
+          <span class="service-tag">OPTIMISATION</span>
+          <span class="service-tag">GAMME</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 17.66l-1.41 1.41M19.07 19.07l-1.41-1.41M5.34 6.34L3.93 4.93M21 12h-2M5 12H3M12 3V1M12 23v-2"/>
+        </svg>
+        <div class="service-title">Conseil Usinabilité</div>
+        <div class="service-desc">Forts de 5 ans d'expérience atelier, nous identifions les problèmes de fabrication en amont et optimise vos conceptions pour vos machines spécifiques — fraisage, tournage, 5 axes.</div>
+        <div class="service-tags">
+          <span class="service-tag">5-AXES</span>
+          <span class="service-tag">TOURNAGE</span>
+          <span class="service-tag">FRAISAGE</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+        </svg>
+        <div class="service-title">Projets Étudiants</div>
+        <div class="service-desc">Mémoire technique, projet de conception, pièce prototype — nous vous accompagnons du cahier des charges à la mise en plan finale avec un tarif adapté aux étudiants.</div>
+        <div class="service-tags">
+          <span class="service-tag">ÉTUDIANT</span>
+          <span class="service-tag">PROTOTYPE</span>
+          <span class="service-tag">IMPRESSION 3D</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          <path d="M7 8h4M7 11h2M13 8h4"/>
+        </svg>
+        <div class="service-title">Liasse Technique Complète</div>
+        <div class="service-desc">Nomenclature, plans d'ensemble et de détail, vues de coupe, tolérances ISO — nous livrons un dossier technique complet, normé, prêt à transmettre à votre fournisseur.</div>
+        <div class="service-tags">
+          <span class="service-tag">ISO</span>
+          <span class="service-tag">NOMENCLATURE</span>
+          <span class="service-tag">TOLERANCES</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="pourquoi">
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <div class="section-header reveal">
+          <span class="section-tag">Expertise</span>
+          <h2 class="section-title">Pourquoi<br>choisir <em>CAD</em></h2>
+          <p class="section-sub">Notre expertise allie la maîtrise de la CAO et une solide expérience terrain en atelier d'usinage — une combinaison rare.</p>
+        </div>
+        <div class="why-items">
+          <div class="why-item reveal">
+            <svg class="why-item-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <div>
+              <div class="why-item-title">Livrables usinables du premier coup</div>
+              <div class="why-item-desc">Chaque pièce que nous dessinons est pensée pour passer directement en production — pas de retouches coûteuses, pas de surprises à la programmation.</div>
+            </div>
+          </div>
+          <div class="why-item reveal reveal-delay-1">
+            <svg class="why-item-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <div>
+              <div class="why-item-title">Réactivité et délais maîtrisés</div>
+              <div class="why-item-desc">Travail en soirée et week-end dédié à vos projets. Un accusé de réception sous 24h, un devis sous 48h.</div>
+            </div>
+          </div>
+          <div class="why-item reveal reveal-delay-2">
+            <svg class="why-item-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <div>
+              <div class="why-item-title">Tarifs adaptés aux PME</div>
+              <div class="why-item-desc">Pas de bureau d'études interne ? Pas de problème. Vous payez la prestation, pas les charges d'un employé à temps plein.</div>
+            </div>
+          </div>
+          <div class="why-item reveal reveal-delay-3">
+            <svg class="why-item-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <div>
+              <div class="why-item-title">Formats universels livrés</div>
+              <div class="why-item-desc">STEP, IGES, DXF, PDF — nous livrons dans les formats compatibles avec votre logiciel de CFAO, sans friction.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card reveal">
+        <div class="spec-header">// fiche_technique.cfg</div>
+        <div class="spec-section-title">FORMATS LIVRABLES</div>
+        <div class="spec-row"><span class="spec-key">3d_formats</span><span class="spec-val white">STEP / IGES / Natif</span></div>
+        <div class="spec-row"><span class="spec-key">2d_formats</span><span class="spec-val white">DXF / PDF / DWG</span></div>
+        <div class="spec-row"><span class="spec-key">compatibilite</span><span class="spec-val">Tous logiciels CFAO</span></div>
+        <div class="spec-section-title">EXPÉRIENCE</div>
+        <div class="spec-row"><span class="spec-key">atelier_usinage</span><span class="spec-val">5+ ans</span></div>
+        <div class="spec-row"><span class="spec-key">domaine</span><span class="spec-val white">Mécanique industrielle</span></div>
+        <div class="spec-row"><span class="spec-key">conception</span><span class="spec-val">CAO 3D / Mise en plan</span></div>
+        <div class="spec-row"><span class="spec-key">profil</span><span class="spec-val teal-link">
+          <a href="https://www.linkedin.com/in/paul-charbonnet" target="_blank" style="color:var(--teal2);text-decoration:none;">↗ Voir sur LinkedIn</a>
+        </span></div>
+        <div class="spec-section-title">STATUT LÉGAL</div>
+        <div class="spec-row"><span class="spec-key">forme</span><span class="spec-val white">Micro-entreprise</span></div>
+        <div class="spec-row"><span class="spec-key">siren</span><span class="spec-val">102538485</span></div>
+        <div class="spec-row"><span class="spec-key">activite</span><span class="spec-val">7112B — Ingénierie</span></div>
+        <div class="spec-row"><span class="spec-key">tva</span><span class="spec-val white">Non applicable (293B)</span></div>
+        <div class="spec-row"><span class="spec-key">localisation</span><span class="spec-val">Cognac · France</span></div>
+        <div class="spec-row"><span class="spec-key">interventions</span><span class="spec-val">France entière</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSUS -->
+<section class="process" id="processus">
+  <div class="container">
+    <div class="section-header reveal" style="text-align:center;margin-bottom:0">
+      <span class="section-tag">Processus</span>
+      <h2 class="section-title">De votre besoin<br>au fichier <em>final</em></h2>
+      <p class="section-sub" style="margin:0 auto">Simple, rapide, sans surprise.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="process-num">01</div>
+        <div class="process-step-title">Demande</div>
+        <div class="process-step-desc">Envoyez-nous votre besoin via le formulaire ou par email. Plan, croquis, fichier ou simple description.</div>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-num">02</div>
+        <div class="process-step-title">Devis</div>
+        <div class="process-step-desc">Nous vous envoyons un devis détaillé sous 48h avec délai, format de livraison et prix fixe, sans surprise.</div>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-num">03</div>
+        <div class="process-step-title">Conception</div>
+        <div class="process-step-desc">Nous réalisons la CAO en tenant compte de vos contraintes machine et procédés. Un point intermédiaire si nécessaire.</div>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="process-num">04</div>
+        <div class="process-step-title">Livraison</div>
+        <div class="process-step-desc">Fichiers livrés par email dans les formats convenus. Corrections incluses si nécessaire.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CIBLES -->
+<section class="cibles" id="cibles">
+  <div class="container">
+    <div class="section-header reveal" style="text-align:center">
+      <span class="section-tag">Clients</span>
+      <h2 class="section-title">À qui nous nous <em>adressons</em></h2>
+    </div>
+    <div class="cibles-grid">
+      <div class="cible-card reveal">
+        <span class="cible-icon">🏭</span>
+        <div class="cible-title">PME Industrielles</div>
+        <div class="cible-desc">Vous usinaez des pièces mais n'avez pas de bureau d'études en interne. Nous sommes votre bureau d'études externalisé.</div>
+        <ul class="cible-list">
+          <li>Reconstruction de pièces sans plan</li>
+          <li>Dossiers techniques complets</li>
+          <li>Conseil usinabilité sur mesure</li>
+        </ul>
+      </div>
+      <div class="cible-card reveal reveal-delay-1">
+        <span class="cible-icon">⚙️</span>
+        <div class="cible-title">Artisans & Indépendants</div>
+        <div class="cible-desc">Vous avez un projet de pièce mécanique et avez besoin d'un fichier propre pour votre sous-traitant ou votre propre machine.</div>
+        <ul class="cible-list">
+          <li>Mise en plan normée ISO</li>
+          <li>Fichiers STEP/DXF livrables</li>
+          <li>Tarif adapté aux petits volumes</li>
+        </ul>
+      </div>
+      <div class="cible-card reveal reveal-delay-2">
+        <span class="cible-icon">🎓</span>
+        <div class="cible-title">Étudiants & Particuliers</div>
+        <div class="cible-desc">Projet scolaire, mémoire de fin d'études, prototype personnel — nous vous accompagnons avec un regard professionnel et un tarif accessible.</div>
+        <ul class="cible-list">
+          <li>Projets de BTS / BUT / Master</li>
+          <li>Prototypes impression 3D / usinage</li>
+          <li>Accompagnement méthodologique</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div>
+          <span class="section-tag">Contact</span>
+          <div class="contact-info-title">Parlons de<br>votre <em>projet</em></div>
+          <div class="contact-info-sub">Un devis est gratuit et sans engagement. Envoyez-nous votre besoin et nous reviendrons vers vous sous 48h avec une proposition chiffrée.</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-val"><a href="mailto:paulcharbonnet@icloud.com">paulcharbonnet@icloud.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.07 2.18 2 2 0 012.03 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Téléphone</div>
+            <div class="contact-item-val"><a href="tel:+33614282034">06 14 28 20 34</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Localisation</div>
+            <div class="contact-item-val">Cognac (16) · Interventions France entière</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal reveal-delay-1">
+        <div class="form-title">Demande de devis</div>
+        <div id="contact-form">
+          <div class="form-row">
+            <div class="form-group"><label>Nom / Société *</label><input type="text" id="fc-nom" placeholder="ex: Dupont Usinage SARL" required></div>
+            <div class="form-group"><label>Email *</label><input type="email" id="fc-email" placeholder="contact@societe.fr" required></div>
+          </div>
+          <div class="form-group">
+            <label>Type de prestation</label>
+            <select id="fc-type">
+              <option value="">Sélectionner...</option>
+              <option>Reconstruction CAO depuis plan papier</option>
+              <option>Conception depuis cahier des charges</option>
+              <option>Modification / optimisation CAO existante</option>
+              <option>Conseil usinabilité</option>
+              <option>Liasse technique complète</option>
+              <option>Projet étudiant</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Description de votre besoin *</label>
+            <textarea id="fc-message" placeholder="Décrivez votre pièce, votre contexte (type de machines, matière, tolérances si connues), et vos délais souhaités..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Délai souhaité</label>
+            <select id="fc-delai">
+              <option value="">Pas de contrainte particulière</option>
+              <option>Urgent — moins d'une semaine</option>
+              <option>Sous 2 semaines</option>
+              <option>Sous 1 mois</option>
+              <option>Flexible</option>
+            </select>
+          </div>
+          <button class="form-submit" onclick="submitForm()">
+            Envoyer la demande
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <div class="legal-notice">
+            Vos données ne sont utilisées que pour répondre à votre demande.<br>
+            Micro-entreprise · SIREN 102538485 · TVA non applicable (art. 293 B CGI)
+          </div>
+        </div>
+        <div class="form-success" id="form-success">
+          <div style="font-size:28px;margin-bottom:16px;color:var(--teal)">✓</div>
+          Demande envoyée avec succès !<br>
+          <span style="color:var(--muted)">Nous revenons vers vous sous 48h.</span><br><br>
+          <span style="font-size:12px;color:var(--muted2)">// paul.charbonnet@icloud.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand-name">CAD</div>
+        <div class="footer-brand-sub">Charbonnet Advanced Design</div>
+        <div class="footer-brand-desc">Conception mécanique assistée par ordinateur, reconstruction de plans et conseil usinabilité pour PME, artisans et particuliers.</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Reconstruction CAO</a></li>
+          <li><a href="#services">Conception depuis CDC</a></li>
+          <li><a href="#services">Modification CAO</a></li>
+          <li><a href="#services">Conseil usinabilité</a></li>
+          <li><a href="#services">Projets étudiants</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="mailto:paulcharbonnet@icloud.com">paulcharbonnet@icloud.com</a></li>
+          <li><a href="tel:+33614282034">06 14 28 20 34</a></li>
+          <li><a href="#contact">Demander un devis</a></li>
+        </ul>
+        <div style="margin-top:20px">
+          <span class="badge-teal">SIREN 102538485</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        © 2026 Charbonnet Advanced Design · Micro-entreprise · SIREN 102538485<br>
+        TVA non applicable, article 293 B du CGI · Cognac (16100), France
+      </div>
+      <div class="footer-legal" style="text-align:right">
+        Conception mécanique · CAO · Usinage<br>
+        <span style="color:var(--teal)">charbonnet-advanced-design.fr</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Mobile menu
+const burger = document.getElementById('burger');
+const navMobile = document.getElementById('nav-mobile');
+burger.addEventListener('click', () => navMobile.classList.toggle('open'));
+function closeMobile() { navMobile.classList.remove('open'); }
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+reveals.forEach(el => obs.observe(el));
+
+// Form submit (simulation — à connecter à un backend ou Formspree)
+function submitForm() {
+  const nom = document.getElementById('fc-nom').value.trim();
+  const email = document.getElementById('fc-email').value.trim();
+  const msg = document.getElementById('fc-message').value.trim();
+  if (!nom || !email || !msg) {
+    alert('Merci de remplir au moins votre nom, email et la description de votre besoin.');
+    return;
+  }
+  // Simulate send
+  document.getElementById('contact-form').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+
+  // Open mail client as fallback
+  const type = document.getElementById('fc-type').value;
+  const delai = document.getElementById('fc-delai').value;
+  const subject = encodeURIComponent(`Demande de devis CAD — ${nom}`);
+  const body = encodeURIComponent(`Nom / Société : ${nom}\nEmail : ${email}\nType : ${type}\nDélai : ${delai}\n\nBesoin :\n${msg}`);
+  window.location.href = `mailto:paulcharbonnet@icloud.com?subject=${subject}&body=${body}`;
+}
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
