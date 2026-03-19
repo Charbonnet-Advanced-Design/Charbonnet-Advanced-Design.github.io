@@ -1581,7 +1581,7 @@ footer {
           </div>
           <div>
             <div class="contact-item-label" id="ci-email-lbl">Email</div>
-            <div class="contact-item-val"><a href="mailto:contact@charbonnet-advanced-design.fr">contact@charbonnet-advanced-design.fr</a></div>
+            <div class="contact-item-val"><a href="/cdn-cgi/l/email-protection#a6c5c9c8d2c7c5d2e6c5cec7d4c4c9c8c8c3d28bc7c2d0c7c8c5c3c28bc2c3d5cfc1c888c0d4"><span class="__cf_email__" data-cfemail="fa9995948e9b998eba99929b88989594949f8ed79b9e8c9b94999f9ed79e9f89939d94d49c88">[email&#160;protected]</span></a></div>
           </div>
         </div>
         <div class="contact-item">
@@ -1660,7 +1660,7 @@ footer {
           <div style="font-size:28px;margin-bottom:16px;color:var(--teal)">✓</div>
           <span id="form-success-msg-el">Demande envoyée avec succès !</span><br>
           <span id="form-success-sub-el" style="color:var(--muted)">Nous revenons vers vous sous 48h.</span><br><br>
-          <span style="font-size:12px;color:var(--muted2)">// contact@charbonnet-advanced-design.fr</span>
+          <span style="font-size:12px;color:var(--muted2)">// <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="24474b4a5045475064474c4556464b4a4a415009454052454a474140094041574d434a0a4256">[email&#160;protected]</a></span>
         </div>
       </div>
     </div>
@@ -1689,7 +1689,7 @@ footer {
       <div>
         <div class="footer-col-title" id="footer-contact-title-el">Contact</div>
         <ul class="footer-links">
-          <li><a href="mailto:contact@charbonnet-advanced-design.fr">contact@charbonnet-advanced-design.fr</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#cba8a4a5bfaaa8bf8ba8a3aab9a9a4a5a5aebfe6aaafbdaaa5a8aeafe6afaeb8a2aca5e5adb9"><span class="__cf_email__" data-cfemail="04676b6a7065677044676c6576666b6a6a617029656072656a676160296061776d636a2a6276">[email&#160;protected]</span></a></li>
           <li><a href="tel:+33614282034">06 14 28 20 34</a></li>
           <li><a href="#contact" id="fl-c1">Demander un devis</a></li>
           <li><a href="mentions-legales.html" id="fl-ml">Mentions légales</a></li>
@@ -1712,7 +1712,7 @@ footer {
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // NAV scroll
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
@@ -1764,22 +1764,22 @@ function submitForm() {
   const files = document.getElementById('fc-files').files;
 
   const formData = new FormData();
-  formData.append('access_key', 'e85d127f-d722-45a5-a60a-4470d0ed7168');
-  formData.append('subject', `Demande de devis CAD — ${nom}`);
-  formData.append('from_name', 'Charbonnet Advanced Design');
-  formData.append('replyto', email);
-  formData.append('nom', nom);
-  formData.append('email', email);
-  formData.append('type_prestation', type);
-  formData.append('message', msg);
-  formData.append('delai', delai);
+  formData.append('Nom / Société', nom);
+  formData.append('Email', email);
+  formData.append('Type de prestation', type);
+  formData.append('Description', msg);
+  formData.append('Délai souhaité', delai);
+  formData.append('_subject', `Nouvelle demande de devis CAD — ${nom}`);
+  formData.append('_template', 'table');
+  formData.append('_captcha', 'false');
+  formData.append('_replyto', email);
   Array.from(files).forEach(f => formData.append('attachment', f));
 
   const btn = document.getElementById('form-submit-el');
   btn.disabled = true;
   btn.style.opacity = '0.7';
 
-  fetch('https://api.web3forms.com/submit', {
+  fetch('https://formsubmit.co/ajax/contact@charbonnet-advanced-design.fr', {
     method: 'POST',
     body: formData
   })
@@ -2222,19 +2222,17 @@ function setLang(lang) {
     if (phLang[phKey]) el.placeholder = phLang[phKey];
   });
 
-  // Desktop nav
-  document.querySelectorAll('.nav-links a:not(.nav-cta)').forEach((a, i) => {
-    const keys = ['mob-nav-services','mob-nav-expertise','nav-about','mob-nav-process'];
-    if (keys[i]) a.textContent = t[keys[i]];
-  });
-  document.querySelectorAll('.nav-cta').forEach(a => a.textContent = t['mob-nav-cta']);
-
-  localStorage.setItem('cad-lang', lang);
+  try { localStorage.setItem('lang', lang); } catch(e) {}
+  savedLang = lang;
 }
 
-// Apply saved language on load
-const savedLang = localStorage.getItem('cad-lang') || 'fr';
-if (savedLang === 'en') setLang('en');
+// Init language
+let savedLang = 'fr';
+try {
+  const stored = localStorage.getItem('lang');
+  if (stored === 'fr' || stored === 'en') savedLang = stored;
+} catch(e) {}
+setLang(savedLang);
 
 </script>
 </body>
