@@ -1608,14 +1608,19 @@ footer {
 
       <div class="contact-form reveal reveal-delay-1">
         <div class="form-title" id="form-title-el">Demande de devis</div>
-        <div id="contact-form">
+        <form id="contact-form" action="https://formsubmit.co/paulcharbonnet@icloud.com" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="_subject" value="Nouvelle demande de devis CAD">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_cc" value="contact@charbonnet-advanced-design.fr">
+          <input type="hidden" name="_next" value="https://charbonnet-advanced-design.fr/merci.html">
           <div class="form-row">
-            <div class="form-group"><label id="form-nom-el">Nom / Société *</label><input type="text" id="fc-nom" data-ph-id="fc-nom-ph" placeholder="ex: Dupont Usinage SARL" required></div>
-            <div class="form-group"><label id="form-email-el">Email *</label><input type="email" id="fc-email" data-ph-id="fc-email-ph" placeholder="contact@societe.fr" required></div>
+            <div class="form-group"><label id="form-nom-el">Nom / Société *</label><input type="text" name="Nom_Societe" id="fc-nom" data-ph-id="fc-nom-ph" placeholder="ex: Dupont Usinage SARL" required></div>
+            <div class="form-group"><label id="form-email-el">Email *</label><input type="email" name="Email" id="fc-email" data-ph-id="fc-email-ph" placeholder="contact@societe.fr" required></div>
           </div>
           <div class="form-group">
             <label id="form-type-el">Type de prestation</label>
-            <select id="fc-type">
+            <select name="Type_de_prestation" id="fc-type">
               <option value="" id="opt-type-0">Sélectionner...</option>
               <option id="opt-type-1">Reconstruction CAO depuis plan papier</option>
               <option id="opt-type-2">Conception depuis cahier des charges</option>
@@ -1628,11 +1633,11 @@ footer {
           </div>
           <div class="form-group">
             <label id="form-msg-el">Description de votre besoin *</label>
-            <textarea id="fc-message" data-ph-id="fc-msg-ph" placeholder="Décrivez votre pièce, votre contexte (type de machines, matière, tolérances si connues), et vos délais souhaités..."></textarea>
+            <textarea name="Description" id="fc-message" data-ph-id="fc-msg-ph" placeholder="Décrivez votre pièce, votre contexte (type de machines, matière, tolérances si connues), et vos délais souhaités..."></textarea>
           </div>
           <div class="form-group">
             <label id="form-delai-el">Délai souhaité</label>
-            <select id="fc-delai">
+            <select name="Delai_souhaite" id="fc-delai">
               <option value="" id="opt-del-0">Pas de contrainte particulière</option>
               <option id="opt-del-1">Urgent — moins d'une semaine</option>
               <option id="opt-del-2">Sous 2 semaines</option>
@@ -1647,23 +1652,17 @@ footer {
               <span id="file-drop-label">Cliquer pour sélectionner ou glisser-déposer</span>
               <span id="form-file-hint" style="font-size:11px;color:var(--muted2);margin-top:4px">PDF, DXF, STEP, JPG, PNG · Max 5 Mo par fichier</span>
             </div>
-            <input type="file" id="fc-files" multiple accept=".pdf,.dxf,.step,.stp,.jpg,.jpeg,.png,.dwg,.iges,.igs" style="display:none" onchange="updateFileLabel()">
+            <input type="file" name="Fichier_joint" id="fc-files" multiple accept=".pdf,.dxf,.step,.stp,.jpg,.jpeg,.png,.dwg,.iges,.igs" style="display:none" onchange="updateFileLabel()">
             <div id="file-list" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px"></div>
           </div>
-          <button class="form-submit" id="form-submit-el" onclick="submitForm()">
+          <button class="form-submit" id="form-submit-el" type="submit">
             <span>Envoyer la demande</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
           <div class="legal-notice" id="form-legal-el">
             Vos données ne sont utilisées que pour répondre à votre demande.<br>
             Micro-entreprise · SIREN 102538485 · TVA non applicable (art. 293 B CGI)
           </div>
-        </div>
-        <div class="form-success" id="form-success">
-          <div style="font-size:28px;margin-bottom:16px;color:var(--teal)">✓</div>
-          <span id="form-success-msg-el">Demande envoyée avec succès !</span><br>
-          <span id="form-success-sub-el" style="color:var(--muted)">Nous revenons vers vous sous 48h.</span><br><br>
-          <span style="font-size:12px;color:var(--muted2)">// <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="24474b4a5045475064474c4556464b4a4a415009454052454a474140094041574d434a0a4256">[email&#160;protected]</a></span>
-        </div>
+        </form>
       </div>
     </div>
   </div>
