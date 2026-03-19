@@ -3,7 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Charbonnet Advanced Design · CAO & Conception Mécanique</title>
+<title>Charbonnet Advanced Design · CAO & Conception Mécanique | Cognac</title>
+<meta name="description" content="Bureau d'études CAO freelance à Cognac. Reconstruction de plans, modélisation 3D, conception mécanique et conseil usinabilité pour PME, artisans et particuliers. Devis gratuit.">
+<meta name="keywords" content="CAO freelance, conception mécanique, reconstruction plan, modélisation 3D, ingénierie, usinage, bureau études, Cognac, Charente, France">
+<meta name="author" content="Paul Charbonnet - Charbonnet Advanced Design">
+<meta name="robots" content="index, follow">
+<meta name="language" content="fr">
+<link rel="canonical" href="https://charbonnet-advanced-design.fr/">
+
+<!-- Open Graph (partage réseaux sociaux) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://charbonnet-advanced-design.fr/">
+<meta property="og:title" content="Charbonnet Advanced Design · CAO & Conception Mécanique">
+<meta property="og:description" content="Bureau d'études CAO freelance à Cognac. Reconstruction de plans, modélisation 3D et conseil usinabilité pour PME et artisans. Devis gratuit sous 48h.">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Charbonnet Advanced Design">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Charbonnet Advanced Design · CAO & Conception Mécanique">
+<meta name="twitter:description" content="Bureau d'études CAO freelance à Cognac. Reconstruction de plans, modélisation 3D et conseil usinabilité.">
+
+<!-- Schema.org JSON-LD (données structurées pour Google) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Charbonnet Advanced Design",
+  "alternateName": "CAD",
+  "description": "Bureau d'études CAO freelance spécialisé en conception mécanique, reconstruction de plans et conseil usinabilité pour PME, artisans et particuliers.",
+  "url": "https://charbonnet-advanced-design.fr",
+  "telephone": "+33614282034",
+  "email": "contact@charbonnet-advanced-design.fr",
+  "founder": {
+    "@type": "Person",
+    "name": "Paul Charbonnet",
+    "jobTitle": "Technicien CAO & Ingénierie mécanique",
+    "sameAs": "https://www.linkedin.com/in/paul-charbonnet-910ab7209"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "8 Place des Dames",
+    "addressLocality": "Cognac",
+    "postalCode": "16100",
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 45.6942,
+    "longitude": -0.3295
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "France"
+  },
+  "priceRange": "€€",
+  "currenciesAccepted": "EUR",
+  "paymentAccepted": "Virement bancaire",
+  "openingHours": "Mo-Fr 18:00-22:00, Sa-Su 09:00-18:00",
+  "sameAs": [
+    "https://www.linkedin.com/in/paul-charbonnet-910ab7209"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services CAO",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Reconstruction CAO depuis plan papier"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Conception mécanique depuis cahier des charges"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Modification et optimisation CAO"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Conseil usinabilité"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Liasse technique complète"}}
+    ]
+  }
+}
+</script>
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2300b8a6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='26' fill='white' letter-spacing='-1'%3ECAD%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Barlow+Condensed:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -41,7 +116,7 @@ body {
 }
 
 /* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar { width: 12px; }
 ::-webkit-scrollbar-track { background: var(--navy3); }
 ::-webkit-scrollbar-thumb { background: var(--teal2); border-radius: 2px; }
 
@@ -61,7 +136,7 @@ body::before {
     linear-gradient(90deg, rgba(0,180,165,0.05) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
 }
 
 /* ── NAV ── */
@@ -88,6 +163,7 @@ nav.scrolled {
   align-items: baseline;
   gap: 10px;
   text-decoration: none;
+  flex-shrink: 0;
 }
 .nav-logo-cad {
   font-family: var(--font-display);
@@ -106,7 +182,7 @@ nav.scrolled {
 }
 .nav-links {
   display: flex;
-  gap: 32px;
+  gap: 28px;
   list-style: none;
   align-items: center;
 }
@@ -118,6 +194,7 @@ nav.scrolled {
   letter-spacing: .8px;
   text-transform: uppercase;
   transition: color .2s;
+  white-space: nowrap;
 }
 .nav-links a:hover { color: var(--teal); }
 .nav-cta {
@@ -127,41 +204,89 @@ nav.scrolled {
   padding: 7px 18px;
   border-radius: 3px;
   transition: all .2s !important;
+  white-space: nowrap;
 }
 .nav-cta:hover {
   background: var(--teal) !important;
   color: var(--navy) !important;
 }
+/* Hide subtitle at medium widths */
+@media(max-width:1100px) {
+  .nav-logo-full { display: none; }
+  .nav-links { gap: 20px; }
+}
 .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-.nav-burger span { width: 22px; height: 2px; background: var(--muted); border-radius: 1px; transition: all .2s; display: block; }
-.nav-mobile { display: none; }
-@media(max-width:768px) {
+.nav-burger span { width: 22px; height: 2px; background: var(--light); border-radius: 1px; transition: all .25s; display: block; }
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile {
+  display: none;
+  position: fixed;
+  top: 68px; left: 0; right: 0;
+  background-color: #ffffff;
+  background-image: none !important;
+  border-bottom: 2px solid var(--teal);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  z-index: 9999;
+  padding: 0;
+}
+.nav-mobile::before {
+  display: none !important;
+}
+.nav-mobile.open { display: block; }
+.nav-mobile.open { display: block; }
+.nav-mobile a {
+  display: block;
+  color: var(--light);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 18px 28px;
+  border-bottom: 1px solid var(--border-gray);
+  transition: background .15s, color .15s;
+  background-color: #ffffff;
+}
+.nav-mobile a:hover { background: var(--teal-xlight); color: var(--teal); }
+.nav-mobile a.nav-cta {
+  color: var(--teal);
+  background-color: #f0faf9;
+  border-bottom: none;
+}
+.nav-mobile a.nav-cta:hover { background: var(--teal); color: white; }
+.lang-switch-mobile {
+  display: flex;
+  gap: 8px;
+  padding: 16px 28px 20px;
+  align-items: center;
+  border-top: 1px solid var(--border-gray);
+  background-color: #ffffff;
+}
+.lang-switch-mobile .lang-btn {
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  border: 1.5px solid var(--border-gray);
+  background: none;
+  color: var(--muted);
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  transition: all .15s;
+}
+.lang-switch-mobile .lang-btn.active {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: white;
+}
+@media(max-width:900px) {
   .nav-links { display: none; }
+  .lang-switch { display: none; }
   .nav-burger { display: flex; }
-  .nav-mobile.open {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 68px; left: 0; right: 0;
-    background: rgba(255,255,255,0.99);
-    padding: 24px 32px;
-    gap: 20px;
-    border-bottom: 1px solid var(--border-gray);
-    z-index: 99;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  }
-  .nav-mobile a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: .8px;
-    text-transform: uppercase;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    transition: color .2s;
-  }
-  .nav-mobile a:hover { color: var(--teal); }
 }
 
 /* ── HERO ── */
@@ -205,7 +330,7 @@ nav.scrolled {
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: center;
-  padding: 80px 0;
+  padding: 48px 0;
 }
 @media(max-width:860px) {
   .hero-inner { grid-template-columns: 1fr; gap: 48px; padding: 60px 0; }
@@ -229,7 +354,7 @@ nav.scrolled {
   font-family: var(--font-display);
   font-size: clamp(48px, 7vw, 82px);
   font-weight: 800;
-  line-height: .95;
+  line-height: .8;
   letter-spacing: -1px;
   margin-bottom: 24px;
   opacity: 0;
@@ -330,7 +455,7 @@ nav.scrolled {
 
 /* ── SECTION BASE ── */
 section { position: relative; z-index: 1; }
-.section-header { margin-bottom: 60px; }
+.section-header { margin-bottom: 30px; }
 .section-tag {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -880,6 +1005,12 @@ footer {
   line-height: 1.8;
 }
 
+/* ── ABOUT ── */
+@media(max-width:760px) {
+  #apropos .container > div { grid-template-columns: 1fr !important; gap: 40px !important; }
+  #apropos .container > div > div:last-child { grid-template-columns: 1fr 1fr; }
+}
+
 /* ── SCROLL REVEAL ── */
 .reveal {
   opacity: 0;
@@ -913,6 +1044,77 @@ footer {
   color: var(--teal);
 }
 
+/* ── FILE DROP ── */
+.file-drop {
+  border: 1.5px dashed var(--border-gray);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: border-color .2s, background .2s;
+  font-size: 13px;
+  color: var(--muted);
+  background: var(--navy2);
+}
+.file-drop:hover, .file-drop.dragover {
+  border-color: var(--teal);
+  background: var(--teal-xlight);
+}
+.file-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--teal-light);
+  color: var(--teal3);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 99px;
+  font-family: var(--font-mono);
+}
+.file-chip button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--teal3);
+  font-size: 13px;
+  line-height: 1;
+  padding: 0;
+}
+
+/* ── LANGUAGE SWITCHER ── */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--navy2);
+  border: 1px solid var(--border-gray);
+  border-radius: 4px;
+  padding: 3px;
+  margin-left: 8px;
+}
+.lang-btn {
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: none;
+  background: none;
+  color: var(--muted);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all .15s;
+  font-family: var(--font-mono);
+}
+.lang-btn.active {
+  background: var(--teal);
+  color: white;
+}
+.lang-btn:hover:not(.active) { color: var(--teal); }
+
 /* ── BADGE ── */
 .badge-teal {
   display: inline-block;
@@ -939,18 +1141,28 @@ footer {
     <li><a href="#services">Services</a></li>
     <li><a href="#pourquoi">Expertise</a></li>
     <li><a href="#processus">Processus</a></li>
-    <li><a href="#contact" class="nav-cta">Demander un devis</a></li>
+    <li><a href="#contact" class="nav-cta" data-fr="Demander un devis" data-en="Request a quote">Demander un devis</a></li>
   </ul>
+  <div class="lang-switch" style="margin-left:16px">
+    <button class="lang-btn active" id="btn-fr" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
   <button class="nav-burger" id="burger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <nav class="nav-mobile" id="nav-mobile">
-  <a href="#services" onclick="closeMobile()">Services</a>
-  <a href="#pourquoi" onclick="closeMobile()">Expertise</a>
-  <a href="#processus" onclick="closeMobile()">Processus</a>
-  <a href="#contact" onclick="closeMobile()">Demander un devis</a>
+  <a href="#services" onclick="closeMobile()" id="mob-nav-services">Services</a>
+  <a href="#pourquoi" onclick="closeMobile()" id="mob-nav-expertise">Expertise</a>
+  <a href="#apropos" onclick="closeMobile()" id="mob-nav-about">À propos</a>
+  <a href="#processus" onclick="closeMobile()" id="mob-nav-process">Processus</a>
+  <a href="#contact" class="nav-cta" onclick="closeMobile()" id="mob-nav-cta">Demander un devis</a>
+  <div class="lang-switch-mobile">
+    <button class="lang-btn active" id="mob-btn-fr" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" id="mob-btn-en" onclick="setLang('en')">EN</button>
+  </div>
 </nav>
+
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -961,35 +1173,14 @@ footer {
   <div class="container hero-content">
     <div class="hero-inner">
       <div class="hero-text">
-        <div class="hero-eyebrow">Conception Mécanique & Usinage</div>
-        <h1 class="hero-title">
-          Vos pièces,<br>
-          <em>conçues</em><br>
-          pour être<br>usinées.
-        </h1>
-        <p class="hero-subtitle">
-          CAO industrielle, reconstruction de plans, modélisation 3D — livrés directement usinables, par un technicien qui connaît la machine autant que le logiciel.
+        <div class="hero-eyebrow" id="hero-eyebrow-el">Conception Mécanique & Usinage</div>
+        <h1 class="hero-title" id="hero-title-el">Vos pièces,<br><em>conçues</em><span style="display:block;margin-top:0.6em">pour être<br>usinées.</span></h1>
+        <p class="hero-subtitle" id="hero-sub-el">
+          Études techniques, modélisation 3D et plans industriels — le bureau d'études disponible quand vous en avez besoin.
         </p>
         <div class="hero-actions">
-          <a href="#contact" class="btn-primary">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            Demander un devis
-          </a>
-          <a href="#services" class="btn-secondary">Voir les services</a>
-        </div>
-        <div class="hero-stats">
-          <div>
-            <div class="hero-stat-num">5+</div>
-            <div class="hero-stat-label">Ans d'expérience</div>
-          </div>
-          <div>
-            <div class="hero-stat-num">3</div>
-            <div class="hero-stat-label">Axes de service</div>
-          </div>
-          <div>
-            <div class="hero-stat-num">100%</div>
-            <div class="hero-stat-label">Usinable garanti</div>
-          </div>
+          <a href="#contact" class="btn-primary" id="hero-btn1-el"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Demander un devis</a>
+          <a href="#services" class="btn-secondary" id="hero-btn2-el">Voir les services</a>
         </div>
       </div>
       <div class="hero-visual">
@@ -1075,9 +1266,9 @@ footer {
 <section class="services" id="services">
   <div class="container">
     <div class="section-header reveal">
-      <span class="section-tag">Services</span>
-      <h2 class="section-title">Ce que nous réalisons<br><em>pour vous</em></h2>
-      <p class="section-sub">Des prestations adaptées à la réalité industrielle — pas des modèles de bureau, des fichiers prêts à usiner.</p>
+      <span class="section-tag" id="services-tag-el">Services</span>
+      <h2 class="section-title" id="services-title-el">Ce que nous réalisons<br><em>pour vous</em></h2>
+      <p class="section-sub" id="services-sub-el">Des prestations adaptées à la réalité industrielle — pas des modèles de bureau, des fichiers prêts à usiner.</p>
     </div>
     <div class="services-grid reveal">
       <div class="service-card">
@@ -1086,8 +1277,8 @@ footer {
           <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
           <circle cx="15.5" cy="15.5" r="2.5"/><path d="M18 18l2 2"/>
         </svg>
-        <div class="service-title">Reconstruction CAO</div>
-        <div class="service-desc">Vous avez un plan papier, un vieux fichier illisible ou une pièce physique à numériser ? Nous reconstruisons le modèle 3D complet avec cotation et mise en plan.</div>
+        <div class="service-title" id="st1">Reconstruction CAO</div>
+        <div class="service-desc" id="sd1">Vous avez un plan papier, un fichier obsolète ou une pièce physique à numériser ? Nous reconstruisons le modèle 3D complet avec cotation et mise en plan.</div>
         <div class="service-tags">
           <span class="service-tag">STEP</span>
           <span class="service-tag">IGES</span>
@@ -1100,10 +1291,9 @@ footer {
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
         </svg>
-        <div class="service-title">Conception depuis CDC</div>
-        <div class="service-desc">Vous avez un besoin, un cahier des charges ou même juste une idée ? Nous concevons la pièce en tenant compte de vos machines et procédés d'usinage dès la première esquisse.</div>
+        <div class="service-title" id="st2">Conception depuis CDC</div>
+        <div class="service-desc" id="sd2">Vous avez un besoin, un cahier des charges ou même juste une idée ? Nous concevons la pièce en tenant compte de vos machines et procédés d'usinage dès la première esquisse.</div>
         <div class="service-tags">
-          <span class="service-tag">DFM</span>
           <span class="service-tag">3D</span>
           <span class="service-tag">2D</span>
           <span class="service-tag">TOLERANCES</span>
@@ -1114,8 +1304,8 @@ footer {
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
         </svg>
-        <div class="service-title">Modification & Optimisation</div>
-        <div class="service-desc">Adaptation d'une CAO existante, modification de cotes, allègement de pièce, changement de matière ou d'ajustement — nous prenons en main votre fichier existant.</div>
+        <div class="service-title" id="st3">Modification & Optimisation</div>
+        <div class="service-desc" id="sd3">Adaptation d'une CAO existante, modification de cotes, allègement de pièce, changement de matière ou d'ajustement — nous prenons en main votre fichier existant.</div>
         <div class="service-tags">
           <span class="service-tag">REVISION</span>
           <span class="service-tag">OPTIMISATION</span>
@@ -1127,10 +1317,9 @@ footer {
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 17.66l-1.41 1.41M19.07 19.07l-1.41-1.41M5.34 6.34L3.93 4.93M21 12h-2M5 12H3M12 3V1M12 23v-2"/>
         </svg>
-        <div class="service-title">Conseil Usinabilité</div>
-        <div class="service-desc">Forts de 5 ans d'expérience atelier, nous identifions les problèmes de fabrication en amont et optimise vos conceptions pour vos machines spécifiques — fraisage, tournage, 5 axes.</div>
+        <div class="service-title" id="st4">Conseil Usinabilité</div>
+        <div class="service-desc" id="sd4">Forts de 5 ans d'expérience atelier, nous identifions les problèmes de fabrication en amont et optimisons vos conceptions pour vos machines — fraisage, tournage.</div>
         <div class="service-tags">
-          <span class="service-tag">5-AXES</span>
           <span class="service-tag">TOURNAGE</span>
           <span class="service-tag">FRAISAGE</span>
         </div>
@@ -1138,28 +1327,28 @@ footer {
       <div class="service-card">
         <div class="service-num">05</div>
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          <path d="M7 8h4M7 11h2M13 8h4"/>
         </svg>
-        <div class="service-title">Projets Étudiants</div>
-        <div class="service-desc">Mémoire technique, projet de conception, pièce prototype — nous vous accompagnons du cahier des charges à la mise en plan finale avec un tarif adapté aux étudiants.</div>
+        <div class="service-title" id="st5">Liasse Technique Complète</div>
+        <div class="service-desc" id="sd5">Nomenclature, plans d'ensemble et de détail, vues de coupe, tolérances ISO — nous livrons un dossier technique complet, normé, prêt à transmettre à votre fournisseur.</div>
         <div class="service-tags">
-          <span class="service-tag">ÉTUDIANT</span>
-          <span class="service-tag">PROTOTYPE</span>
-          <span class="service-tag">IMPRESSION 3D</span>
+          <span class="service-tag">ISO</span>
+          <span class="service-tag">NOMENCLATURE</span>
+          <span class="service-tag">TOLERANCES</span>
         </div>
       </div>
       <div class="service-card">
         <div class="service-num">06</div>
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
-          <path d="M7 8h4M7 11h2M13 8h4"/>
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
         </svg>
-        <div class="service-title">Liasse Technique Complète</div>
-        <div class="service-desc">Nomenclature, plans d'ensemble et de détail, vues de coupe, tolérances ISO — nous livrons un dossier technique complet, normé, prêt à transmettre à votre fournisseur.</div>
+        <div class="service-title" id="st6">Particuliers</div>
+        <div class="service-desc" id="sd6">Mémoire technique, projet de conception, pièce prototype — nous vous accompagnons du cahier des charges à la mise en plan finale avec un tarif adapté aux particuliers.</div>
         <div class="service-tags">
-          <span class="service-tag">ISO</span>
-          <span class="service-tag">NOMENCLATURE</span>
-          <span class="service-tag">TOLERANCES</span>
+          <span class="service-tag">PARTICULIERS</span>
+          <span class="service-tag">PROTOTYPE</span>
+          <span class="service-tag">STL</span>
         </div>
       </div>
     </div>
@@ -1172,61 +1361,130 @@ footer {
     <div class="why-grid">
       <div>
         <div class="section-header reveal">
-          <span class="section-tag">Expertise</span>
-          <h2 class="section-title">Pourquoi<br>choisir <em>CAD</em></h2>
-          <p class="section-sub">Notre expertise allie la maîtrise de la CAO et une solide expérience terrain en atelier d'usinage — une combinaison rare.</p>
+          <span class="section-tag" id="why-tag-el">Expertise</span>
+          <h2 class="section-title" id="why-title-el">Pourquoi<br>choisir <em>CAD</em></h2>
+          <p class="section-sub" id="why-sub-el">Notre expertise allie la maîtrise de la CAO et une solide expérience terrain en atelier d'usinage.</p>
         </div>
         <div class="why-items">
           <div class="why-item reveal">
             <svg class="why-item-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
             <div>
-              <div class="why-item-title">Livrables usinables du premier coup</div>
-              <div class="why-item-desc">Chaque pièce que nous dessinons est pensée pour passer directement en production — pas de retouches coûteuses, pas de surprises à la programmation.</div>
+              <div class="why-item-title" id="wt1">Livrables pensés production</div>
+              <div class="why-item-desc" id="wd1">Chaque pièce que nous dessinons est conçue pour passer directement en production, sans allers-retours inutiles.</div>
             </div>
           </div>
           <div class="why-item reveal reveal-delay-1">
             <svg class="why-item-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
             <div>
-              <div class="why-item-title">Réactivité et délais maîtrisés</div>
-              <div class="why-item-desc">Travail en soirée et week-end dédié à vos projets. Un accusé de réception sous 24h, un devis sous 48h.</div>
+              <div class="why-item-title" id="wt2">Réactivité et délais maîtrisés</div>
+              <div class="why-item-desc" id="wd2">Un accusé de réception sous 24h, un devis sous 48h.</div>
             </div>
           </div>
           <div class="why-item reveal reveal-delay-2">
             <svg class="why-item-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
             <div>
-              <div class="why-item-title">Tarifs adaptés aux PME</div>
-              <div class="why-item-desc">Pas de bureau d'études interne ? Pas de problème. Vous payez la prestation, pas les charges d'un employé à temps plein.</div>
+              <div class="why-item-title" id="wt3">Tarifs adaptés aux PME</div>
+              <div class="why-item-desc" id="wd3">Pas de bureau d'études interne ? Vous payez uniquement la prestation dont vous avez besoin, quand vous en avez besoin.</div>
             </div>
           </div>
           <div class="why-item reveal reveal-delay-3">
             <svg class="why-item-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
             <div>
-              <div class="why-item-title">Formats universels livrés</div>
-              <div class="why-item-desc">STEP, IGES, DXF, PDF — nous livrons dans les formats compatibles avec votre logiciel de CFAO, sans friction.</div>
+              <div class="why-item-title" id="wt4">Formats universels livrés</div>
+              <div class="why-item-desc" id="wd4">STEP, IGES, DXF, PDF — nous livrons dans les formats compatibles avec votre logiciel de CFAO.</div>
             </div>
           </div>
         </div>
       </div>
       <div class="spec-card reveal">
-        <div class="spec-header">// fiche_technique.cfg</div>
-        <div class="spec-section-title">FORMATS LIVRABLES</div>
-        <div class="spec-row"><span class="spec-key">3d_formats</span><span class="spec-val white">STEP / IGES / Natif</span></div>
-        <div class="spec-row"><span class="spec-key">2d_formats</span><span class="spec-val white">DXF / PDF / DWG</span></div>
-        <div class="spec-row"><span class="spec-key">compatibilite</span><span class="spec-val">Tous logiciels CFAO</span></div>
-        <div class="spec-section-title">EXPÉRIENCE</div>
-        <div class="spec-row"><span class="spec-key">atelier_usinage</span><span class="spec-val">5+ ans</span></div>
-        <div class="spec-row"><span class="spec-key">domaine</span><span class="spec-val white">Mécanique industrielle</span></div>
-        <div class="spec-row"><span class="spec-key">conception</span><span class="spec-val">CAO 3D / Mise en plan</span></div>
+        <div class="spec-header" id="spec-header">// fiche_technique.cfg</div>
+        <div class="spec-section-title" id="spec-s1">FORMATS LIVRABLES</div>
+        <div class="spec-row"><span class="spec-key" id="spec-k1">3d_formats</span><span class="spec-val white" id="spec-v1">STEP / IGES / sur demande</span></div>
+        <div class="spec-row"><span class="spec-key" id="spec-k2">2d_formats</span><span class="spec-val white" id="spec-v2">DXF / PDF / DWG</span></div>
+        
+        <div class="spec-section-title" id="spec-s2">EXPÉRIENCE</div>
+        <div class="spec-row"><span class="spec-key" id="spec-k4">atelier_usinage</span><span class="spec-val" id="spec-v4">+5 ans</span></div>
+        <div class="spec-row"><span class="spec-key" id="spec-k5">domaine</span><span class="spec-val white" id="spec-v5">Ingénierie Mécanique Industrielle</span></div>
+        <div class="spec-row"><span class="spec-key" id="spec-k6">conception</span><span class="spec-val" id="spec-v6">CAO 3D / Mise en plan</span></div>
         <div class="spec-row"><span class="spec-key">profil</span><span class="spec-val teal-link">
-          <a href="https://www.linkedin.com/in/paul-charbonnet" target="_blank" style="color:var(--teal2);text-decoration:none;">↗ Voir sur LinkedIn</a>
+          <a href="https://www.linkedin.com/in/paul-charbonnet-910ab7209" target="_blank" id="spec-v7" style="color:var(--teal2);text-decoration:none;">↗ Voir sur LinkedIn</a>
         </span></div>
-        <div class="spec-section-title">STATUT LÉGAL</div>
-        <div class="spec-row"><span class="spec-key">forme</span><span class="spec-val white">Micro-entreprise</span></div>
+        <div class="spec-section-title" id="spec-s3">STATUT LÉGAL</div>
+        <div class="spec-row"><span class="spec-key" id="spec-k8">forme</span><span class="spec-val white" id="spec-v8">Micro-entreprise</span></div>
         <div class="spec-row"><span class="spec-key">siren</span><span class="spec-val">102538485</span></div>
-        <div class="spec-row"><span class="spec-key">activite</span><span class="spec-val">7112B — Ingénierie</span></div>
-        <div class="spec-row"><span class="spec-key">tva</span><span class="spec-val white">Non applicable (293B)</span></div>
-        <div class="spec-row"><span class="spec-key">localisation</span><span class="spec-val">Cognac · France</span></div>
-        <div class="spec-row"><span class="spec-key">interventions</span><span class="spec-val">France entière</span></div>
+        
+        <div class="spec-row"><span class="spec-key" id="spec-k10">tva</span><span class="spec-val white" id="spec-v10">Non applicable (293B)</span></div>
+        <div class="spec-row"><span class="spec-key" id="spec-k11">localisation</span><span class="spec-val" id="spec-v11">Cognac · France</span></div>
+        
+      </div>
+    </div>
+
+  <!-- Révisions -->
+  <div class="reveal" style="max-width:760px;margin:48px auto 0;background:var(--navy2);border-radius:8px;padding:28px 32px;border-left:3px solid var(--teal)">
+    <div style="font-family:var(--font-mono);font-size:11px;color:var(--teal);letter-spacing:2px;margin-bottom:14px;text-transform:uppercase" id="rev-title">// Politique de révision</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div>
+        <div style="font-size:13px;font-weight:600;color:var(--light);margin-bottom:8px" id="rev-included-title">✓ Inclus dans chaque livraison</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px">
+          <li style="font-size:12px;color:var(--muted);padding-left:12px;position:relative" id="rev-i1">→ Ajustement d'une cote ou d'une tolérance</li>
+          <li style="font-size:12px;color:var(--muted);padding-left:12px;position:relative" id="rev-i2">→ Changement de format de livraison</li>
+          <li style="font-size:12px;color:var(--muted);padding-left:12px;position:relative" id="rev-i3">→ Correction d'une erreur de notre fait</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:var(--light);margin-bottom:8px" id="rev-extra-title">+ Modifications supplémentaires</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px">
+          <li style="font-size:12px;color:var(--muted);padding-left:12px;position:relative" id="rev-e1">→ Refonte partielle ou totale du modèle</li>
+          <li style="font-size:12px;color:var(--muted);padding-left:12px;position:relative" id="rev-e2">→ Ajout de fonctions non prévues au devis</li>
+          <li style="font-size:12px;color:var(--muted);padding-left:12px;position:relative" id="rev-e3">→ Changement de cahier des charges en cours de mission</li>
+        </ul>
+        <div style="font-size:11px;color:var(--muted2);margin-top:10px;font-style:italic" id="rev-note">Feront l'objet d'un devis complémentaire.</div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+
+<!-- À PROPOS -->
+<section style="padding:120px 0;background:#ffffff" id="apropos">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:center">
+      <div>
+        <span class="section-tag" id="about-tag">À propos</span>
+        <h2 class="section-title" id="about-title">Un technicien,<br>pas un <em>logiciel</em></h2>
+        <p style="font-size:16px;color:var(--muted);line-height:1.8;margin-top:20px;font-weight:300" id="about-p1">
+          Derrière Charbonnet Advanced Design, il y a <strong style="color:var(--light)">Paul Charbonnet</strong>, technicien usineur avec 5 ans d'expérience en atelier. Pas un dessinateur qui n'a jamais touché une machine — quelqu'un qui a programmé des centres d'usinage, connaît les contraintes réelles de fabrication et conçoit chaque pièce en pensant à la fraise qui va l'usiner.
+        </p>
+        <p style="font-size:16px;color:var(--muted);line-height:1.8;margin-top:16px;font-weight:300" id="about-p2">
+          C'est ce regard croisé — atelier + CAO — qui fait la différence quand vous recevez vos fichiers.
+        </p>
+        <div style="display:flex;gap:16px;margin-top:36px;flex-wrap:wrap">
+          <a href="https://www.linkedin.com/in/paul-charbonnet-910ab7209" target="_blank" class="btn-secondary" id="about-btn-linkedin" style="font-size:13px">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="#contact" class="btn-primary" id="about-btn-contact" style="font-size:13px">
+            Demander un devis
+          </a>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div style="background:var(--navy2);border-radius:12px;padding:28px;border:1px solid var(--border-gray)">
+          <div style="font-family:var(--font-display);font-size:42px;font-weight:800;color:var(--teal)">+5</div>
+          <div style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-top:4px" id="about-s1">Ans d'expérience atelier</div>
+        </div>
+        <div style="background:var(--navy2);border-radius:12px;padding:28px;border:1px solid var(--border-gray)">
+          <div style="font-family:var(--font-display);font-size:42px;font-weight:800;color:var(--teal)">48h</div>
+          <div style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-top:4px" id="about-s2">Délai de réponse devis</div>
+        </div>
+        <div style="background:var(--navy2);border-radius:12px;padding:28px;border:1px solid var(--border-gray)">
+          <div style="font-family:var(--font-display);font-size:42px;font-weight:800;color:var(--teal)">100%</div>
+          <div style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-top:4px" id="about-s3">Fichiers usinables</div>
+        </div>
+        <div style="background:var(--teal);border-radius:12px;padding:28px">
+          <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:white;line-height:1.3" id="about-s4">Devis gratuit & sans engagement</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1236,30 +1494,30 @@ footer {
 <section class="process" id="processus">
   <div class="container">
     <div class="section-header reveal" style="text-align:center;margin-bottom:0">
-      <span class="section-tag">Processus</span>
-      <h2 class="section-title">De votre besoin<br>au fichier <em>final</em></h2>
-      <p class="section-sub" style="margin:0 auto">Simple, rapide, sans surprise.</p>
+      <span class="section-tag" id="process-tag-el">Processus</span>
+      <h2 class="section-title" id="process-title-el">De votre besoin<br>au fichier <em>final</em></h2>
+      <p class="section-sub" id="process-sub-el" style="margin:0 auto">Simple, rapide, sans surprise.</p>
     </div>
     <div class="process-steps">
       <div class="process-step reveal">
         <div class="process-num">01</div>
-        <div class="process-step-title">Demande</div>
-        <div class="process-step-desc">Envoyez-nous votre besoin via le formulaire ou par email. Plan, croquis, fichier ou simple description.</div>
+        <div class="process-step-title" id="pt1">Demande</div>
+        <div class="process-step-desc" id="pd1">Envoyez-nous votre besoin via le formulaire ou par email. Plan, croquis, fichier ou simple description.</div>
       </div>
       <div class="process-step reveal reveal-delay-1">
         <div class="process-num">02</div>
-        <div class="process-step-title">Devis</div>
-        <div class="process-step-desc">Nous vous envoyons un devis détaillé sous 48h avec délai, format de livraison et prix fixe, sans surprise.</div>
+        <div class="process-step-title" id="pt2">Devis</div>
+        <div class="process-step-desc" id="pd2">Nous vous envoyons un devis détaillé sous 48h avec délai, format de livraison et prix fixe, sans surprise.</div>
       </div>
       <div class="process-step reveal reveal-delay-2">
         <div class="process-num">03</div>
-        <div class="process-step-title">Conception</div>
-        <div class="process-step-desc">Nous réalisons la CAO en tenant compte de vos contraintes machine et procédés. Un point intermédiaire si nécessaire.</div>
+        <div class="process-step-title" id="pt3">Conception</div>
+        <div class="process-step-desc" id="pd3">Nous réalisons la CAO en tenant compte de vos contraintes machine et procédés. Un point intermédiaire si nécessaire.</div>
       </div>
       <div class="process-step reveal reveal-delay-3">
         <div class="process-num">04</div>
-        <div class="process-step-title">Livraison</div>
-        <div class="process-step-desc">Fichiers livrés par email dans les formats convenus. Corrections incluses si nécessaire.</div>
+        <div class="process-step-title" id="pt4">Livraison</div>
+        <div class="process-step-desc" id="pd4">Fichiers livrés par email dans les formats convenus. <strong style="color:var(--light)">1 modification simple incluse</strong> — ajustement de cote, changement de format, correction mineure.</div>
       </div>
     </div>
   </div>
@@ -1269,38 +1527,38 @@ footer {
 <section class="cibles" id="cibles">
   <div class="container">
     <div class="section-header reveal" style="text-align:center">
-      <span class="section-tag">Clients</span>
-      <h2 class="section-title">À qui nous nous <em>adressons</em></h2>
+      <span class="section-tag" id="clients-tag-el">Clients</span>
+      <h2 class="section-title" id="clients-title-el">À qui nous nous <em>adressons</em></h2>
     </div>
     <div class="cibles-grid">
       <div class="cible-card reveal">
         <span class="cible-icon">🏭</span>
-        <div class="cible-title">PME Industrielles</div>
-        <div class="cible-desc">Vous usinaez des pièces mais n'avez pas de bureau d'études en interne. Nous sommes votre bureau d'études externalisé.</div>
+        <div class="cible-title" id="ct1">PME Industrielles</div>
+        <div class="cible-desc" id="cd1">Vous usinaez des pièces mais n'avez pas de bureau d'études en interne. Nous sommes votre bureau d'études externalisé.</div>
         <ul class="cible-list">
-          <li>Reconstruction de pièces sans plan</li>
-          <li>Dossiers techniques complets</li>
-          <li>Conseil usinabilité sur mesure</li>
+          <li id="cl1-1">Reconstruction de pièces sans plan</li>
+          <li id="cl1-2">Dossiers techniques complets</li>
+          <li id="cl1-3">Conseil usinabilité sur mesure</li>
         </ul>
       </div>
       <div class="cible-card reveal reveal-delay-1">
         <span class="cible-icon">⚙️</span>
-        <div class="cible-title">Artisans & Indépendants</div>
-        <div class="cible-desc">Vous avez un projet de pièce mécanique et avez besoin d'un fichier propre pour votre sous-traitant ou votre propre machine.</div>
+        <div class="cible-title" id="ct2">Artisans & Indépendants</div>
+        <div class="cible-desc" id="cd2">Vous avez un projet de pièce mécanique et avez besoin d'un fichier propre pour votre sous-traitant ou votre propre machine.</div>
         <ul class="cible-list">
-          <li>Mise en plan normée ISO</li>
-          <li>Fichiers STEP/DXF livrables</li>
-          <li>Tarif adapté aux petits volumes</li>
+          <li id="cl2-1">Mise en plan normée ISO</li>
+          <li id="cl2-2">Fichiers STEP/DXF livrables</li>
+          <li id="cl2-3">Tarif adapté aux petits volumes</li>
         </ul>
       </div>
       <div class="cible-card reveal reveal-delay-2">
         <span class="cible-icon">🎓</span>
-        <div class="cible-title">Étudiants & Particuliers</div>
-        <div class="cible-desc">Projet scolaire, mémoire de fin d'études, prototype personnel — nous vous accompagnons avec un regard professionnel et un tarif accessible.</div>
+        <div class="cible-title" id="ct3">Étudiants & Particuliers</div>
+        <div class="cible-desc" id="cd3">Projet scolaire, mémoire de fin d'études, prototype personnel — nous vous accompagnons avec un regard professionnel et un tarif accessible.</div>
         <ul class="cible-list">
-          <li>Projets de BTS / BUT / Master</li>
-          <li>Prototypes impression 3D / usinage</li>
-          <li>Accompagnement méthodologique</li>
+          <li id="cl3-1">Projets de BTS / BUT / Master</li>
+          <li id="cl3-2">Prototypes impression 3D / usinage</li>
+          <li id="cl3-3">Accompagnement méthodologique</li>
         </ul>
       </div>
     </div>
@@ -1313,17 +1571,17 @@ footer {
     <div class="contact-grid">
       <div class="contact-info reveal">
         <div>
-          <span class="section-tag">Contact</span>
-          <div class="contact-info-title">Parlons de<br>votre <em>projet</em></div>
-          <div class="contact-info-sub">Un devis est gratuit et sans engagement. Envoyez-nous votre besoin et nous reviendrons vers vous sous 48h avec une proposition chiffrée.</div>
+          <span class="section-tag" id="contact-tag-el">Contact</span>
+          <div class="contact-info-title" id="contact-title-el">Parlons de<br>votre <em>projet</em></div>
+          <div class="contact-info-sub" id="contact-sub-el">Un devis est gratuit et sans engagement. Envoyez-nous votre besoin et nous reviendrons vers vous sous 48h avec une proposition chiffrée.</div>
         </div>
         <div class="contact-item">
           <div class="contact-item-icon">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
           <div>
-            <div class="contact-item-label">Email</div>
-            <div class="contact-item-val"><a href="mailto:paulcharbonnet@icloud.com">paulcharbonnet@icloud.com</a></div>
+            <div class="contact-item-label" id="ci-email-lbl">Email</div>
+            <div class="contact-item-val"><a href="mailto:contact@charbonnet-advanced-design.fr">contact@charbonnet-advanced-design.fr</a></div>
           </div>
         </div>
         <div class="contact-item">
@@ -1331,7 +1589,7 @@ footer {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.07 2.18 2 2 0 012.03 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           </div>
           <div>
-            <div class="contact-item-label">Téléphone</div>
+            <div class="contact-item-label" id="ci-tel-lbl">Téléphone</div>
             <div class="contact-item-val"><a href="tel:+33614282034">06 14 28 20 34</a></div>
           </div>
         </div>
@@ -1340,60 +1598,69 @@ footer {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
           </div>
           <div>
-            <div class="contact-item-label">Localisation</div>
-            <div class="contact-item-val">Cognac (16) · Interventions France entière</div>
+            <div class="contact-item-label" id="ci-loc-lbl">Localisation</div>
+            <div class="contact-item-val" id="ci-loc-val">Cognac (16) · Interventions France entière</div>
           </div>
         </div>
       </div>
 
       <div class="contact-form reveal reveal-delay-1">
-        <div class="form-title">Demande de devis</div>
+        <div class="form-title" id="form-title-el">Demande de devis</div>
         <div id="contact-form">
           <div class="form-row">
-            <div class="form-group"><label>Nom / Société *</label><input type="text" id="fc-nom" placeholder="ex: Dupont Usinage SARL" required></div>
-            <div class="form-group"><label>Email *</label><input type="email" id="fc-email" placeholder="contact@societe.fr" required></div>
+            <div class="form-group"><label id="form-nom-el">Nom / Société *</label><input type="text" id="fc-nom" data-ph-id="fc-nom-ph" placeholder="ex: Dupont Usinage SARL" required></div>
+            <div class="form-group"><label id="form-email-el">Email *</label><input type="email" id="fc-email" data-ph-id="fc-email-ph" placeholder="contact@societe.fr" required></div>
           </div>
           <div class="form-group">
-            <label>Type de prestation</label>
+            <label id="form-type-el">Type de prestation</label>
             <select id="fc-type">
-              <option value="">Sélectionner...</option>
-              <option>Reconstruction CAO depuis plan papier</option>
-              <option>Conception depuis cahier des charges</option>
-              <option>Modification / optimisation CAO existante</option>
-              <option>Conseil usinabilité</option>
-              <option>Liasse technique complète</option>
-              <option>Projet étudiant</option>
-              <option>Autre</option>
+              <option value="" id="opt-type-0">Sélectionner...</option>
+              <option id="opt-type-1">Reconstruction CAO depuis plan papier</option>
+              <option id="opt-type-2">Conception depuis cahier des charges</option>
+              <option id="opt-type-3">Modification / optimisation CAO existante</option>
+              <option id="opt-type-4">Conseil usinabilité</option>
+              <option id="opt-type-5">Liasse technique complète</option>
+              <option id="opt-type-6">Projet étudiant</option>
+              <option id="opt-type-7">Autre</option>
             </select>
           </div>
           <div class="form-group">
-            <label>Description de votre besoin *</label>
-            <textarea id="fc-message" placeholder="Décrivez votre pièce, votre contexte (type de machines, matière, tolérances si connues), et vos délais souhaités..."></textarea>
+            <label id="form-msg-el">Description de votre besoin *</label>
+            <textarea id="fc-message" data-ph-id="fc-msg-ph" placeholder="Décrivez votre pièce, votre contexte (type de machines, matière, tolérances si connues), et vos délais souhaités..."></textarea>
           </div>
           <div class="form-group">
-            <label>Délai souhaité</label>
+            <label id="form-delai-el">Délai souhaité</label>
             <select id="fc-delai">
-              <option value="">Pas de contrainte particulière</option>
-              <option>Urgent — moins d'une semaine</option>
-              <option>Sous 2 semaines</option>
-              <option>Sous 1 mois</option>
-              <option>Flexible</option>
+              <option value="" id="opt-del-0">Pas de contrainte particulière</option>
+              <option id="opt-del-1">Urgent — moins d'une semaine</option>
+              <option id="opt-del-2">Sous 2 semaines</option>
+              <option id="opt-del-3">Sous 1 mois</option>
+              <option id="opt-del-4">Flexible</option>
             </select>
           </div>
-          <button class="form-submit" onclick="submitForm()">
-            Envoyer la demande
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <div class="form-group">
+            <label id="form-file-el">Fichiers joints <span id="form-file-sub" style="font-weight:400;color:var(--muted2)">(plans, images, CDC — optionnel)</span></label>
+            <div class="file-drop" id="file-drop-zone" onclick="document.getElementById('fc-files').click()">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--muted2)"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span id="file-drop-label">Cliquer pour sélectionner ou glisser-déposer</span>
+              <span id="form-file-hint" style="font-size:11px;color:var(--muted2);margin-top:4px">PDF, DXF, STEP, JPG, PNG · Max 10 Mo par fichier</span>
+            </div>
+            <input type="file" id="fc-files" multiple accept=".pdf,.dxf,.step,.stp,.jpg,.jpeg,.png,.dwg,.iges,.igs" style="display:none" onchange="updateFileLabel()">
+            <div id="file-list" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px"></div>
+          </div>
+          <button class="form-submit" id="form-submit-el" onclick="submitForm()">
+            <span>Envoyer la demande</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
-          <div class="legal-notice">
+          <div class="legal-notice" id="form-legal-el">
             Vos données ne sont utilisées que pour répondre à votre demande.<br>
             Micro-entreprise · SIREN 102538485 · TVA non applicable (art. 293 B CGI)
           </div>
         </div>
         <div class="form-success" id="form-success">
           <div style="font-size:28px;margin-bottom:16px;color:var(--teal)">✓</div>
-          Demande envoyée avec succès !<br>
-          <span style="color:var(--muted)">Nous revenons vers vous sous 48h.</span><br><br>
-          <span style="font-size:12px;color:var(--muted2)">// paul.charbonnet@icloud.com</span>
+          <span id="form-success-msg-el">Demande envoyée avec succès !</span><br>
+          <span id="form-success-sub-el" style="color:var(--muted)">Nous revenons vers vous sous 48h.</span><br><br>
+          <span style="font-size:12px;color:var(--muted2)">// contact@charbonnet-advanced-design.fr</span>
         </div>
       </div>
     </div>
@@ -1407,24 +1674,25 @@ footer {
       <div>
         <div class="footer-brand-name">CAD</div>
         <div class="footer-brand-sub">Charbonnet Advanced Design</div>
-        <div class="footer-brand-desc">Conception mécanique assistée par ordinateur, reconstruction de plans et conseil usinabilité pour PME, artisans et particuliers.</div>
+        <div class="footer-brand-desc" id="footer-desc-el">Conception mécanique assistée par ordinateur, reconstruction de plans et conseil usinabilité pour PME, artisans et particuliers.</div>
       </div>
       <div>
-        <div class="footer-col-title">Services</div>
+        <div class="footer-col-title" id="footer-services-title-el">Services</div>
         <ul class="footer-links">
-          <li><a href="#services">Reconstruction CAO</a></li>
-          <li><a href="#services">Conception depuis CDC</a></li>
-          <li><a href="#services">Modification CAO</a></li>
-          <li><a href="#services">Conseil usinabilité</a></li>
-          <li><a href="#services">Projets étudiants</a></li>
+          <li><a href="#services" id="fl-s1">Reconstruction CAO</a></li>
+          <li><a href="#services" id="fl-s2">Conception depuis CDC</a></li>
+          <li><a href="#services" id="fl-s3">Modification CAO</a></li>
+          <li><a href="#services" id="fl-s4">Conseil usinabilité</a></li>
+          <li><a href="#services" id="fl-s5">Projets étudiants</a></li>
         </ul>
       </div>
       <div>
-        <div class="footer-col-title">Contact</div>
+        <div class="footer-col-title" id="footer-contact-title-el">Contact</div>
         <ul class="footer-links">
-          <li><a href="mailto:paulcharbonnet@icloud.com">paulcharbonnet@icloud.com</a></li>
+          <li><a href="mailto:contact@charbonnet-advanced-design.fr">contact@charbonnet-advanced-design.fr</a></li>
           <li><a href="tel:+33614282034">06 14 28 20 34</a></li>
-          <li><a href="#contact">Demander un devis</a></li>
+          <li><a href="#contact" id="fl-c1">Demander un devis</a></li>
+          <li><a href="mentions-legales.html" id="fl-ml">Mentions légales</a></li>
         </ul>
         <div style="margin-top:20px">
           <span class="badge-teal">SIREN 102538485</span>
@@ -1437,7 +1705,7 @@ footer {
         TVA non applicable, article 293 B du CGI · Cognac (16100), France
       </div>
       <div class="footer-legal" style="text-align:right">
-        Conception mécanique · CAO · Usinage<br>
+        <span id="footer-bottom-right-el">Conception mécanique · CAO · Usinage</span><br>
         <span style="color:var(--teal)">charbonnet-advanced-design.fr</span>
       </div>
     </div>
@@ -1454,8 +1722,25 @@ window.addEventListener('scroll', () => {
 // Mobile menu
 const burger = document.getElementById('burger');
 const navMobile = document.getElementById('nav-mobile');
-burger.addEventListener('click', () => navMobile.classList.toggle('open'));
-function closeMobile() { navMobile.classList.remove('open'); }
+burger.addEventListener('click', () => {
+  navMobile.classList.toggle('open');
+  burger.classList.toggle('open');
+  document.body.style.overflow = navMobile.classList.contains('open') ? 'hidden' : '';
+});
+function closeMobile() {
+  navMobile.classList.remove('open');
+  burger.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Click outside to close
+document.addEventListener('click', (e) => {
+  if (navMobile.classList.contains('open') &&
+      !navMobile.contains(e.target) &&
+      !burger.contains(e.target)) {
+    closeMobile();
+  }
+});
 
 // Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
@@ -1473,28 +1758,482 @@ function submitForm() {
     alert('Merci de remplir au moins votre nom, email et la description de votre besoin.');
     return;
   }
-  // Simulate send
-  document.getElementById('contact-form').style.display = 'none';
-  document.getElementById('form-success').style.display = 'block';
 
-  // Open mail client as fallback
   const type = document.getElementById('fc-type').value;
   const delai = document.getElementById('fc-delai').value;
-  const subject = encodeURIComponent(`Demande de devis CAD — ${nom}`);
-  const body = encodeURIComponent(`Nom / Société : ${nom}\nEmail : ${email}\nType : ${type}\nDélai : ${delai}\n\nBesoin :\n${msg}`);
-  window.location.href = `mailto:paulcharbonnet@icloud.com?subject=${subject}&body=${body}`;
+  const files = document.getElementById('fc-files').files;
+
+  const formData = new FormData();
+  formData.append('nom', nom);
+  formData.append('email', email);
+  formData.append('type', type);
+  formData.append('message', msg);
+  formData.append('delai', delai);
+  formData.append('_subject', `Demande de devis CAD — ${nom}`);
+  formData.append('_replyto', email);
+  Array.from(files).forEach(f => formData.append('fichiers', f));
+
+  const btn = document.getElementById('form-submit-el');
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+
+  fetch('https://formspree.io/f/mojkygzg', {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(res => {
+    if (res.ok) {
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } else {
+      alert('Une erreur est survenue. Merci de nous contacter directement à contact@charbonnet-advanced-design.fr');
+      btn.disabled = false;
+      btn.style.opacity = '1';
+    }
+  })
+  .catch(() => {
+    alert('Une erreur est survenue. Merci de nous contacter directement à contact@charbonnet-advanced-design.fr');
+    btn.disabled = false;
+    btn.style.opacity = '1';
+  });
 }
 
-// Smooth scroll for anchor links
+// File upload handling
+function updateFileLabel() {
+  const input = document.getElementById('fc-files');
+  const list = document.getElementById('file-list');
+  const label = document.getElementById('file-drop-label');
+  const files = Array.from(input.files);
+  if (files.length === 0) {
+    label.textContent = savedLang === 'en' ? 'Click to select or drag and drop' : 'Cliquer pour sélectionner ou glisser-déposer';
+    list.innerHTML = '';
+    return;
+  }
+  label.textContent = savedLang === 'en' ? `${files.length} file(s) selected` : `${files.length} fichier(s) sélectionné(s)`;
+  list.innerHTML = files.map((f, i) => `
+    <span class="file-chip">
+      ${f.name.length > 20 ? f.name.substring(0,18)+'…' : f.name}
+      <button onclick="removeFile(${i})" type="button">×</button>
+    </span>`).join('');
+}
+
+function removeFile(idx) {
+  const input = document.getElementById('fc-files');
+  const dt = new DataTransfer();
+  Array.from(input.files).forEach((f, i) => { if (i !== idx) dt.items.add(f); });
+  input.files = dt.files;
+  updateFileLabel();
+}
+
+// Drag and drop
+const dropZone = document.getElementById('file-drop-zone');
+if (dropZone) {
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+    const input = document.getElementById('fc-files');
+    const dt = new DataTransfer();
+    Array.from(input.files).forEach(f => dt.items.add(f));
+    Array.from(e.dataTransfer.files).forEach(f => dt.items.add(f));
+    input.files = dt.files;
+    updateFileLabel();
+  });
+}
+
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
   });
 });
+
+// ── LANGUAGE SYSTEM ──
+const T = {
+  fr: {
+    title: 'Charbonnet Advanced Design · CAO & Conception Mécanique',
+    'hero-eyebrow-el': 'Conception Mécanique & Usinage',
+    'hero-title-el': 'Vos pièces,<br><em>conçues</em><br>pour être<br>usinées.',
+    'hero-sub-el': "Études techniques, modélisation 3D et plans industriels — le bureau d'études disponible quand vous en avez besoin.",
+    'hero-btn1-el': '→ Demander un devis',
+    'hero-btn2-el': 'Voir les services',
+    'stat1-label-el': "Ans d'expérience",
+    'stat2-label-el': 'Axes de service',
+    'stat3-label-el': 'Délai de réponse',
+    'services-tag-el': 'Services',
+    'services-title-el': 'Ce que nous réalisons<br><em>pour vous</em>',
+    'services-sub-el': "Des prestations adaptées à la réalité industrielle — pas des modèles de bureau, des fichiers prêts à usiner.",
+    'st1': 'Reconstruction CAO',
+    'st2': 'Conception depuis CDC',
+    'st3': 'Modification & Optimisation',
+    'st4': 'Conseil Usinabilité',
+    'st5': 'Liasse Technique Complète',
+    'st6': 'Particuliers',
+    'sd1': "Vous avez un plan papier, un fichier obsolète ou une pièce physique à numériser ? Nous reconstruisons le modèle 3D complet avec cotation et mise en plan.",
+    'sd2': "Vous avez un besoin, un cahier des charges ou même juste une idée ? Nous concevons la pièce en tenant compte de vos machines et procédés d'usinage dès la première esquisse.",
+    'sd3': "Adaptation d'une CAO existante, modification de cotes, allègement de pièce, changement de matière ou d'ajustement — nous prenons en main votre fichier existant.",
+    'sd4': "Forts de 5 ans d'expérience atelier, nous identifions les problèmes de fabrication en amont et optimisons vos conceptions pour vos machines — fraisage, tournage.",
+    'sd5': "Nomenclature, plans d'ensemble et de détail, vues de coupe, tolérances ISO — nous livrons un dossier technique complet, normé, prêt à transmettre à votre fournisseur.",
+    'sd6': "Mémoire technique, projet de conception, pièce prototype — nous vous accompagnons du cahier des charges à la mise en plan finale avec un tarif adapté aux particuliers.",
+    'why-tag-el': 'Expertise',
+    'why-title-el': 'Pourquoi<br>choisir <em>CAD</em>',
+    'why-sub-el': "Notre expertise allie la maîtrise de la CAO et une solide expérience terrain en atelier d'usinage.",
+    'wt1': 'Livrables pensés production',
+    'wt2': 'Réactivité et délais maîtrisés',
+    'wt3': 'Tarifs adaptés aux PME',
+    'wt4': 'Formats universels livrés',
+    'wd1': "Chaque pièce que nous dessinons est conçue pour passer directement en production, sans allers-retours inutiles.",
+    'wd2': "Un accusé de réception sous 24h, un devis sous 48h.",
+    'wd3': "Pas de bureau d'études interne ? Vous payez uniquement la prestation dont vous avez besoin, quand vous en avez besoin.",
+    'wd4': "STEP, IGES, DXF, PDF — nous livrons dans les formats compatibles avec votre logiciel de CFAO.",
+    'process-tag-el': 'Processus',
+    'process-title-el': 'De votre besoin<br>au fichier <em>final</em>',
+    'process-sub-el': 'Simple, rapide, sans surprise.',
+    'pt1': 'Demande',
+    'pt2': 'Devis',
+    'pt3': 'Conception',
+    'pt4': 'Livraison',
+    'pd1': 'Envoyez-nous votre besoin via le formulaire ou par email. Plan, croquis, fichier ou simple description.',
+    'pd2': 'Nous vous envoyons un devis détaillé sous 48h avec délai, format de livraison et prix fixe, sans surprise.',
+    'pd3': 'Nous réalisons la CAO en tenant compte de vos contraintes machine et procédés. Un point intermédiaire si nécessaire.',
+    'rev-title': '// Politique de révision',
+    'rev-included-title': '✓ Inclus dans chaque livraison',
+    'rev-i1': '→ Ajustement d\'une cote ou d\'une tolérance',
+    'rev-i2': '→ Changement de format de livraison',
+    'rev-i3': '→ Correction d\'une erreur de notre fait',
+    'rev-extra-title': '+ Modifications supplémentaires',
+    'rev-e1': '→ Refonte partielle ou totale du modèle',
+    'rev-e2': '→ Ajout de fonctions non prévues au devis',
+    'rev-e3': '→ Changement de cahier des charges en cours de mission',
+    'rev-note': 'Feront l\'objet d\'un devis complémentaire.',
+    'pd4': 'Fichiers livrés par email dans les formats convenus. <strong style="color:var(--light)">1 modification simple incluse</strong> — ajustement de cote, changement de format, correction mineure.',
+    'clients-tag-el': 'Clients',
+    'clients-title-el': 'À qui nous nous <em>adressons</em>',
+    'ct1': 'PME Industrielles',
+    'ct2': 'Artisans & Indépendants',
+    'ct3': 'Étudiants & Particuliers',
+    'cd1': "Vous usinaez des pièces mais n'avez pas de bureau d'études en interne. Nous sommes votre bureau d'études externalisé.",
+    'cd2': "Vous avez un projet de pièce mécanique et avez besoin d'un fichier propre pour votre sous-traitant ou votre propre machine.",
+    'cd3': "Projet scolaire, mémoire de fin d'études, prototype personnel — nous vous accompagnons avec un regard professionnel et un tarif accessible.",
+    'contact-tag-el': 'Contact',
+    'contact-title-el': 'Parlons de<br>votre <em>projet</em>',
+    'contact-sub-el': "Un devis est gratuit et sans engagement. Envoyez-nous votre besoin et nous reviendrons vers vous sous 48h avec une proposition chiffrée.",
+    'ci-email-lbl': 'Email',
+    'ci-tel-lbl': 'Téléphone',
+    'ci-loc-lbl': 'Localisation',
+    'ci-loc-val': 'Cognac (16) · Interventions France entière',
+    'form-title-el': 'Demande de devis',
+    'form-nom-el': 'Nom / Société *',
+    'form-email-el': 'Email *',
+    'form-type-el': 'Type de prestation',
+    'form-msg-el': 'Description de votre besoin *',
+    'form-delai-el': 'Délai souhaité',
+    'form-submit-el': 'Envoyer la demande',
+    'file-drop-label': 'Cliquer pour sélectionner ou glisser-déposer',
+    'form-file-el': 'Fichiers joints',
+    'form-file-sub': '(plans, images, CDC — optionnel)',
+    'form-file-hint': 'PDF, DXF, STEP, JPG, PNG · Max 10 Mo par fichier',
+    'form-success-msg-el': 'Demande envoyée avec succès !',
+    'form-success-sub-el': 'Nous revenons vers vous sous 48h.',
+    'footer-desc-el': "Conception mécanique assistée par ordinateur, reconstruction de plans et conseil usinabilité pour PME, artisans et particuliers.",
+    'footer-services-title-el': 'Services',
+    'footer-contact-title-el': 'Contact',
+    'footer-bottom-right-el': 'Conception mécanique · CAO · Usinage',
+    'mob-nav-services': 'Services',
+    'mob-nav-expertise': 'Expertise',
+    'mob-nav-process': 'Processus',
+
+    'cl1-1': 'Reconstruction de pièces sans plan',
+    'cl1-2': 'Dossiers techniques complets',
+    'cl1-3': 'Conseil usinabilité sur mesure',
+    'cl2-1': 'Mise en plan normée ISO',
+    'cl2-2': 'Fichiers STEP/DXF livrables',
+    'cl2-3': 'Tarif adapté aux petits volumes',
+    'cl3-1': 'Projets de BTS / BUT / Master',
+    'cl3-2': 'Prototypes impression 3D / usinage',
+    'cl3-3': 'Accompagnement méthodologique',
+    'fl-s1': 'Reconstruction CAO',
+    'fl-s2': 'Conception depuis CDC',
+    'fl-s3': 'Modification CAO',
+    'fl-s4': 'Conseil usinabilité',
+    'fl-s5': 'Projets étudiants',
+    'fl-c1': 'Demander un devis',
+    'fl-ml': 'Mentions légales',
+    'opt-type-0': 'Sélectionner...',
+    'opt-type-1': 'Reconstruction CAO depuis plan papier',
+    'opt-type-2': 'Conception depuis cahier des charges',
+    'opt-type-3': 'Modification / optimisation CAO existante',
+    'opt-type-4': 'Conseil usinabilité',
+    'opt-type-5': 'Liasse technique complète',
+    'opt-type-6': 'Projet étudiant',
+    'opt-type-7': 'Autre',
+    'opt-del-0': 'Pas de contrainte particulière',
+    'opt-del-1': "Urgent — moins d'une semaine",
+    'opt-del-2': 'Sous 2 semaines',
+    'opt-del-3': 'Sous 1 mois',
+    'opt-del-4': 'Flexible',
+    'form-legal-el': 'Vos données ne sont utilisées que pour répondre à votre demande.\nMicro-entreprise · SIREN 102538485 · TVA non applicable (art. 293 B CGI)',
+
+    'spec-header': '// fiche_technique.cfg',
+    'spec-s1': 'FORMATS LIVRABLES',
+    'spec-k1': '3d_formats', 'spec-v1': 'STEP / IGES / sur demande',
+    'spec-k2': '2d_formats', 'spec-v2': 'DXF / PDF / DWG',
+    
+    'spec-s2': 'EXPÉRIENCE',
+    'spec-k4': 'atelier_usinage', 'spec-v4': '+5 ans',
+    'spec-k5': 'domaine', 'spec-v5': 'Ingénierie Mécanique Industrielle',
+    'spec-k6': 'conception', 'spec-v6': 'CAO 3D / Mise en plan',
+    'spec-s3': 'STATUT LÉGAL',
+    'spec-k8': 'forme', 'spec-v8': 'Micro-entreprise',
+    
+    'spec-k10': 'tva', 'spec-v10': 'Non applicable (293B)',
+    'spec-k11': 'localisation', 'spec-v11': 'Cognac · France',
+    
+    'about-tag': 'À propos',
+    'about-title': 'Un technicien,<br>pas un <em>logiciel</em>',
+    'about-p1': "Derrière Charbonnet Advanced Design, il y a <strong style=\"color:var(--light)\">Paul Charbonnet</strong>, ingénieur/technicien avec +5 ans d'expérience en atelier. Une double casquette — atelier et CAO — qui permet de concevoir des pièces pensées pour être fabriquées, pas seulement modélisées.",
+    'about-p2': "C'est ce regard croisé — atelier + CAO — qui fait la différence quand vous recevez vos fichiers.",
+    'about-btn-linkedin': 'LinkedIn',
+    'nav-about': 'À propos',
+    'about-btn-contact': 'Demander un devis',
+    'about-s1': "D'expérience atelier",
+    'about-s2': 'Délai de réponse devis',
+    'about-s3': 'Fichiers usinables',
+    'about-s4': 'Devis gratuit & sans engagement',
+    'mob-nav-cta': 'Demander un devis',
+  },
+  en: {
+    title: 'Charbonnet Advanced Design · CAD & Mechanical Design',
+    'hero-eyebrow-el': 'Mechanical Design & Machining',
+    'hero-title-el': 'Your parts,<br><em>designed</em><br>to be<br>machined.',
+    'hero-sub-el': 'Technical studies, 3D modelling and industrial drawings — your design office, available when you need it.',
+    'hero-btn1-el': '→ Request a quote',
+    'hero-btn2-el': 'See services',
+    'stat1-label-el': 'Years of experience',
+    'stat2-label-el': 'Service areas',
+    'stat3-label-el': 'Response time',
+    'services-tag-el': 'Services',
+    'services-title-el': 'What we do<br><em>for you</em>',
+    'services-sub-el': 'Services tailored to industrial reality — not office models, but files ready for production.',
+    'st1': 'CAD Reconstruction',
+    'st2': 'Design from Specifications',
+    'st3': 'Modification & Optimisation',
+    'st4': 'Machinability Consulting',
+    'st5': 'Complete Technical Package',
+    'st6': 'Individuals',
+    'sd1': 'You have a paper drawing, an outdated file or a physical part to digitise? We reconstruct the complete 3D model with dimensioning and technical drawing.',
+    'sd2': 'You have a need, a specification or just an idea? We design the part taking into account your machines and machining processes from the first sketch.',
+    'sd3': 'Adaptation of an existing CAD, modification of dimensions, part lightening, material or fit change — we take charge of your existing file.',
+    'sd4': 'With 5 years of workshop experience, we identify manufacturing problems upstream and optimise your designs for your machines — milling, turning.',
+    'sd5': 'Bill of materials, assembly and detail drawings, section views, ISO tolerances — we deliver a complete, standardised technical package ready to send to your supplier.',
+    'sd6': 'Technical report, design project, prototype part — we guide you from specification to final drawing with rates adapted to individuals.',
+    'why-tag-el': 'Expertise',
+    'why-title-el': 'Why<br>choose <em>CAD</em>',
+    'why-sub-el': 'Our expertise combines CAD mastery with solid hands-on experience in machining workshops.',
+    'wt1': 'Production-ready deliverables',
+    'wt2': 'Responsiveness and controlled deadlines',
+    'wt3': 'Rates adapted to SMEs',
+    'wt4': 'Universal formats delivered',
+    'wd1': 'Every part we design is built to go straight into production, without unnecessary back-and-forth.',
+    'wd2': 'Acknowledgement within 24h, quote within 48h.',
+    'wd3': 'No in-house design office? You only pay for the service you need, when you need it.',
+    'wd4': 'STEP, IGES, DXF, PDF — we deliver in formats compatible with your CAM software.',
+    'process-tag-el': 'Process',
+    'process-title-el': 'From your need<br>to the <em>final file</em>',
+    'process-sub-el': 'Simple, fast, no surprises.',
+    'pt1': 'Request',
+    'pt2': 'Quote',
+    'pt3': 'Design',
+    'pt4': 'Delivery',
+    'pd1': 'Send us your need via the form or by email. Drawing, sketch, file or simple description.',
+    'pd2': 'We send you a detailed quote within 48h with deadline, delivery format and fixed price, no surprises.',
+    'pd3': 'We produce the CAD taking into account your machine constraints and processes. An intermediate check if needed.',
+    'rev-title': '// Revision policy',
+    'rev-included-title': '✓ Included with every delivery',
+    'rev-i1': '→ Adjustment of a dimension or tolerance',
+    'rev-i2': '→ Change of delivery format',
+    'rev-i3': '→ Correction of an error on our part',
+    'rev-extra-title': '+ Additional revisions',
+    'rev-e1': '→ Partial or full model redesign',
+    'rev-e2': '→ Addition of features not included in the quote',
+    'rev-e3': '→ Change of specifications during the project',
+    'rev-note': 'Will be subject to an additional quote.',
+    'pd4': 'Files delivered by email in the agreed formats. <strong style="color:var(--light)">1 minor revision included</strong> — dimension adjustment, format change, minor correction.',
+    'clients-tag-el': 'Clients',
+    'clients-title-el': 'Who we <em>work with</em>',
+    'ct1': 'Industrial SMEs',
+    'ct2': 'Craftsmen & Independents',
+    'ct3': 'Students & Individuals',
+    'cd1': 'You machine parts but have no in-house design office. We are your outsourced design bureau.',
+    'cd2': 'You have a mechanical part project and need a clean file for your subcontractor or your own machine.',
+    'cd3': 'School project, end-of-study thesis, personal prototype — we guide you with a professional eye and accessible rates.',
+    'contact-tag-el': 'Contact',
+    'contact-title-el': "Let's talk about<br>your <em>project</em>",
+    'contact-sub-el': 'A quote is free and non-binding. Send us your need and we will get back to you within 48h with a detailed proposal.',
+    'ci-email-lbl': 'Email',
+    'ci-tel-lbl': 'Phone',
+    'ci-loc-lbl': 'Location',
+    'ci-loc-val': 'Cognac (16) · Nationwide — France',
+    'form-title-el': 'Request a quote',
+    'form-nom-el': 'Name / Company *',
+    'form-email-el': 'Email *',
+    'form-type-el': 'Type of service',
+    'form-msg-el': 'Describe your need *',
+    'form-delai-el': 'Desired timeline',
+    'form-submit-el': 'Send request',
+    'file-drop-label': 'Click to select or drag and drop',
+    'form-file-el': 'Attached files',
+    'form-file-sub': '(drawings, images, specs — optional)',
+    'form-file-hint': 'PDF, DXF, STEP, JPG, PNG · Max 10 MB per file',
+    'form-success-msg-el': 'Request sent successfully!',
+    'form-success-sub-el': 'We will get back to you within 48h.',
+    'footer-desc-el': 'Computer-aided mechanical design, plan reconstruction and machinability consulting for SMEs, craftsmen and individuals.',
+    'footer-services-title-el': 'Services',
+    'footer-contact-title-el': 'Contact',
+    'footer-bottom-right-el': 'Mechanical design · CAD · Machining',
+    'mob-nav-services': 'Services',
+    'mob-nav-expertise': 'Expertise',
+    'mob-nav-process': 'Process',
+
+    'cl1-1': 'CAD reconstruction from drawing',
+    'cl1-2': 'Complete technical packages',
+    'cl1-3': 'Custom machinability consulting',
+    'cl2-1': 'ISO normalised technical drawing',
+    'cl2-2': 'STEP/DXF deliverable files',
+    'cl2-3': 'Rates adapted to small volumes',
+    'cl3-1': 'HND / Bachelor / Master projects',
+    'cl3-2': '3D printing / machining prototypes',
+    'cl3-3': 'Methodological support',
+    'fl-s1': 'CAD Reconstruction',
+    'fl-s2': 'Design from Specifications',
+    'fl-s3': 'CAD Modification',
+    'fl-s4': 'Machinability consulting',
+    'fl-s5': 'Student projects',
+    'fl-c1': 'Request a quote',
+    'fl-ml': 'Legal notice',
+    'opt-type-0': 'Select...',
+    'opt-type-1': 'CAD reconstruction from paper drawing',
+    'opt-type-2': 'Design from specifications',
+    'opt-type-3': 'Modification / optimisation of existing CAD',
+    'opt-type-4': 'Machinability consulting',
+    'opt-type-5': 'Complete technical package',
+    'opt-type-6': 'Student project',
+    'opt-type-7': 'Other',
+    'opt-del-0': 'No particular constraint',
+    'opt-del-1': 'Urgent — less than one week',
+    'opt-del-2': 'Within 2 weeks',
+    'opt-del-3': 'Within 1 month',
+    'opt-del-4': 'Flexible',
+    'form-legal-el': 'Your data is only used to respond to your request.\nMicro-enterprise · SIREN 102538485 · VAT not applicable (art. 293 B CGI)',
+
+    'spec-header': '// technical_sheet.cfg',
+    'spec-s1': 'DELIVERABLE FORMATS',
+    'spec-k1': '3d_formats', 'spec-v1': 'STEP / IGES / on request',
+    'spec-k2': '2d_formats', 'spec-v2': 'DXF / PDF / DWG',
+    'spec-k3': 'compatibility', 'spec-v3': 'All CAM software',
+    'spec-s2': 'EXPERIENCE',
+    'spec-k4': 'machining_shop', 'spec-v4': '+5 years',
+    'spec-k5': 'field', 'spec-v5': 'Industrial Mechanical Engineering',
+    'spec-k6': 'design', 'spec-v6': '3D CAD / Technical drawing',
+    'spec-s3': 'LEGAL STATUS',
+    'spec-k8': 'type', 'spec-v8': 'Sole trader',
+    
+    'spec-k10': 'vat', 'spec-v10': 'Not applicable (art. 293B)',
+    'spec-k11': 'location', 'spec-v11': 'Cognac · France',
+    
+    'about-tag': 'About',
+    'about-title': 'A technician,<br>not a <em>software</em>',
+    'about-p1': "Behind Charbonnet Advanced Design is <strong style=\"color:var(--light)\">Paul Charbonnet</strong>, an engineer/technician with +5 years of workshop experience. A dual background — shop floor and CAD — that allows designing parts built to be manufactured, not just modelled.",
+    'about-p2': "It is this combined perspective — workshop + CAD — that makes the difference when you receive your files.",
+    'about-btn-linkedin': 'LinkedIn',
+    'nav-about': 'About',
+    'about-btn-contact': 'Request a quote',
+    'about-s1': 'Years of workshop experience',
+    'about-s2': 'Quote response time',
+    'about-s3': 'Machinable files',
+    'about-s4': 'Free quote, no commitment',
+    'mob-nav-cta': 'Request a quote',
+  }
+};
+
+// IDs that need innerHTML (contain HTML tags), rest use textContent
+const HTML_IDS = new Set([
+  'hero-title-el','why-title-el','services-title-el','process-title-el','about-title',
+  'about-p1','about-p2','pd4',
+  'clients-title-el','contact-title-el','why-tag-el','services-tag-el',
+  'process-tag-el','clients-tag-el','contact-tag-el','hero-eyebrow-el'
+]);
+
+function setLang(lang) {
+  const t = T[lang];
+  document.documentElement.lang = lang;
+  document.title = t.title;
+
+  // Update all buttons
+  ['btn-fr','btn-en','mob-btn-fr','mob-btn-en'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('active', id.endsWith('-'+lang));
+  });
+
+  // Update all translated elements
+  Object.keys(t).forEach(key => {
+    if (key === 'title') return;
+    const el = document.getElementById(key);
+    if (!el) return;
+    const tag = el.tagName.toLowerCase();
+    if (tag === 'option') {
+      el.textContent = t[key];
+    } else if (key === 'form-legal-el') {
+      el.innerHTML = t[key].replace(/\\n/g, '<br>');
+    } else if (key === 'form-file-el') {
+      // Label has a child span — only update the text node, not the span
+      const firstText = el.childNodes[0];
+      if (firstText && firstText.nodeType === 3) firstText.textContent = t[key] + ' ';
+    } else if (HTML_IDS.has(key)) {
+      el.innerHTML = t[key];
+    } else {
+      el.textContent = t[key];
+    }
+  });
+
+  // Update placeholders via data-ph-id
+  const phMap = {
+    'fc-nom-ph': '[fc-nom]',
+    'fc-email-ph': '[fc-email]',
+    'fc-msg-ph': '[fc-message]'
+  };
+  const phFr = {
+    'fc-nom-ph': 'ex: Dupont Usinage SARL',
+    'fc-email-ph': 'contact@societe.fr',
+    'fc-msg-ph': "Décrivez votre pièce, votre contexte (type de machines, matière, tolérances si connues), et vos délais souhaités..."
+  };
+  const phEn = {
+    'fc-nom-ph': 'e.g. Dupont Machining Ltd',
+    'fc-email-ph': 'contact@company.com',
+    'fc-msg-ph': 'Describe your part, your context (machine type, material, tolerances if known), and your desired deadlines...'
+  };
+  const phLang = lang === 'en' ? phEn : phFr;
+  document.querySelectorAll('[data-ph-id]').forEach(el => {
+    const phKey = el.getAttribute('data-ph-id');
+    if (phLang[phKey]) el.placeholder = phLang[phKey];
+  });
+
+  // Desktop nav
+  document.querySelectorAll('.nav-links a:not(.nav-cta)').forEach((a, i) => {
+    const keys = ['mob-nav-services','mob-nav-expertise','nav-about','mob-nav-process'];
+    if (keys[i]) a.textContent = t[keys[i]];
+  });
+  document.querySelectorAll('.nav-cta').forEach(a => a.textContent = t['mob-nav-cta']);
+
+  localStorage.setItem('cad-lang', lang);
+}
+
+// Apply saved language on load
+const savedLang = localStorage.getItem('cad-lang') || 'fr';
+if (savedLang === 'en') setLang('en');
+
 </script>
 </body>
 </html>
