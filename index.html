@@ -1517,7 +1517,7 @@ footer {
       <div class="process-step reveal reveal-delay-3">
         <div class="process-num">04</div>
         <div class="process-step-title" id="pt4">Livraison</div>
-        <div class="process-step-desc" id="pd4">Fichiers livrés par email dans les formats convenus. <strong style="color:var(--light)">1 modification simple incluse</strong> — ajustement de cote, changement de format, correction mineure.</div>
+        <div class="process-step-desc" id="pd4">Fichiers livrés par email dans les formats convenus. <strong>1 modification simple incluse</strong> — ajustement de cote, changement de format, correction mineure.</div>
       </div>
     </div>
   </div>
@@ -1643,7 +1643,7 @@ footer {
             <div class="file-drop" id="file-drop-zone" onclick="document.getElementById('fc-files').click()">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--muted2)"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
               <span id="file-drop-label">Cliquer pour sélectionner ou glisser-déposer</span>
-              <span id="form-file-hint" style="font-size:11px;color:var(--muted2);margin-top:4px">PDF, DXF, STEP, JPG, PNG · Max 10 Mo par fichier</span>
+              <span id="form-file-hint" style="font-size:11px;color:var(--muted2);margin-top:4px">PDF, DXF, STEP, JPG, PNG · Max 5 Mo par fichier</span>
             </div>
             <input type="file" id="fc-files" multiple accept=".pdf,.dxf,.step,.stp,.jpg,.jpeg,.png,.dwg,.iges,.igs" style="display:none" onchange="updateFileLabel()">
             <div id="file-list" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px"></div>
@@ -1764,26 +1764,28 @@ function submitForm() {
   const files = document.getElementById('fc-files').files;
 
   const formData = new FormData();
+  formData.append('access_key', 'e85d127f-d722-45a5-a60a-4470d0ed7168');
+  formData.append('subject', `Demande de devis CAD — ${nom}`);
+  formData.append('from_name', 'Charbonnet Advanced Design');
+  formData.append('replyto', email);
   formData.append('nom', nom);
   formData.append('email', email);
-  formData.append('type', type);
+  formData.append('type_prestation', type);
   formData.append('message', msg);
   formData.append('delai', delai);
-  formData.append('_subject', `Demande de devis CAD — ${nom}`);
-  formData.append('_replyto', email);
-  Array.from(files).forEach(f => formData.append('fichiers', f));
+  Array.from(files).forEach(f => formData.append('attachment', f));
 
   const btn = document.getElementById('form-submit-el');
   btn.disabled = true;
   btn.style.opacity = '0.7';
 
-  fetch('https://formspree.io/f/mojkygzg', {
+  fetch('https://api.web3forms.com/submit', {
     method: 'POST',
-    body: formData,
-    headers: { 'Accept': 'application/json' }
+    body: formData
   })
-  .then(res => {
-    if (res.ok) {
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
       document.getElementById('contact-form').style.display = 'none';
       document.getElementById('form-success').style.display = 'block';
     } else {
@@ -1908,7 +1910,7 @@ const T = {
     'rev-e2': '→ Ajout de fonctions non prévues au devis',
     'rev-e3': '→ Changement de cahier des charges en cours de mission',
     'rev-note': 'Feront l\'objet d\'un devis complémentaire.',
-    'pd4': 'Fichiers livrés par email dans les formats convenus. <strong style="color:var(--light)">1 modification simple incluse</strong> — ajustement de cote, changement de format, correction mineure.',
+    'pd4': 'Fichiers livrés par email dans les formats convenus. <strong>1 modification simple incluse</strong> — ajustement de cote, changement de format, correction mineure.',
     'clients-tag-el': 'Clients',
     'clients-title-el': 'À qui nous nous <em>adressons</em>',
     'ct1': 'PME Industrielles',
@@ -1934,7 +1936,7 @@ const T = {
     'file-drop-label': 'Cliquer pour sélectionner ou glisser-déposer',
     'form-file-el': 'Fichiers joints',
     'form-file-sub': '(plans, images, CDC — optionnel)',
-    'form-file-hint': 'PDF, DXF, STEP, JPG, PNG · Max 10 Mo par fichier',
+    'form-file-hint': 'PDF, DXF, STEP, JPG, PNG · Max 5 Mo par fichier',
     'form-success-msg-el': 'Demande envoyée avec succès !',
     'form-success-sub-el': 'Nous revenons vers vous sous 48h.',
     'footer-desc-el': "Conception mécanique assistée par ordinateur, reconstruction de plans et conseil usinabilité pour PME, artisans et particuliers.",
@@ -1993,7 +1995,7 @@ const T = {
     
     'about-tag': 'À propos',
     'about-title': 'Un technicien,<br>pas un <em>logiciel</em>',
-    'about-p1': "Derrière Charbonnet Advanced Design, il y a <strong style=\"color:var(--light)\">Paul Charbonnet</strong>, ingénieur/technicien avec +5 ans d'expérience en atelier. Une double casquette — atelier et CAO — qui permet de concevoir des pièces pensées pour être fabriquées, pas seulement modélisées.",
+    'about-p1': "Derrière Charbonnet Advanced Design, il y a <strong>Paul Charbonnet</strong>, ingénieur/technicien avec +5 ans d'expérience en atelier. Une double casquette — atelier et CAO — qui permet de concevoir des pièces pensées pour être fabriquées, pas seulement modélisées.",
     'about-p2': "C'est ce regard croisé — atelier + CAO — qui fait la différence quand vous recevez vos fichiers.",
     'about-btn-linkedin': 'LinkedIn',
     'nav-about': 'À propos',
@@ -2060,7 +2062,7 @@ const T = {
     'rev-e2': '→ Addition of features not included in the quote',
     'rev-e3': '→ Change of specifications during the project',
     'rev-note': 'Will be subject to an additional quote.',
-    'pd4': 'Files delivered by email in the agreed formats. <strong style="color:var(--light)">1 minor revision included</strong> — dimension adjustment, format change, minor correction.',
+    'pd4': 'Files delivered by email in the agreed formats. <strong>1 minor revision included</strong> — dimension adjustment, format change, minor correction.',
     'clients-tag-el': 'Clients',
     'clients-title-el': 'Who we <em>work with</em>',
     'ct1': 'Industrial SMEs',
@@ -2086,7 +2088,7 @@ const T = {
     'file-drop-label': 'Click to select or drag and drop',
     'form-file-el': 'Attached files',
     'form-file-sub': '(drawings, images, specs — optional)',
-    'form-file-hint': 'PDF, DXF, STEP, JPG, PNG · Max 10 MB per file',
+    'form-file-hint': 'PDF, DXF, STEP, JPG, PNG · Max 5 MB per file',
     'form-success-msg-el': 'Request sent successfully!',
     'form-success-sub-el': 'We will get back to you within 48h.',
     'footer-desc-el': 'Computer-aided mechanical design, plan reconstruction and machinability consulting for SMEs, craftsmen and individuals.',
@@ -2145,7 +2147,7 @@ const T = {
     
     'about-tag': 'About',
     'about-title': 'A technician,<br>not a <em>software</em>',
-    'about-p1': "Behind Charbonnet Advanced Design is <strong style=\"color:var(--light)\">Paul Charbonnet</strong>, an engineer/technician with +5 years of workshop experience. A dual background — shop floor and CAD — that allows designing parts built to be manufactured, not just modelled.",
+    'about-p1': "Behind Charbonnet Advanced Design is <strong>Paul Charbonnet</strong>, an engineer/technician with +5 years of workshop experience. A dual background — shop floor and CAD — that allows designing parts built to be manufactured, not just modelled.",
     'about-p2': "It is this combined perspective — workshop + CAD — that makes the difference when you receive your files.",
     'about-btn-linkedin': 'LinkedIn',
     'nav-about': 'About',
