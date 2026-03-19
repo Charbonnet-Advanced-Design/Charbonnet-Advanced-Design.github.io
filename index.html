@@ -1770,6 +1770,7 @@ function submitForm() {
   formData.append('Description', msg);
   formData.append('Délai souhaité', delai);
   formData.append('_subject', `Nouvelle demande de devis CAD — ${nom}`);
+  formData.append('_cc', 'contact@charbonnet-advanced-design.fr');
   formData.append('_template', 'table');
   formData.append('_captcha', 'false');
   formData.append('_replyto', email);
@@ -1779,7 +1780,7 @@ function submitForm() {
   btn.disabled = true;
   btn.style.opacity = '0.7';
 
-  fetch('https://formsubmit.co/ajax/contact@charbonnet-advanced-design.fr', {
+  fetch('https://formsubmit.co/ajax/paulcharbonnet@icloud.com', {
     method: 'POST',
     body: formData
   })
