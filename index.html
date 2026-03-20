@@ -2390,21 +2390,22 @@ function setLang(lang) {
   const track = document.getElementById('carouselTrack');
   if (!wrapper || !track) return;
 
-  // Clone toutes les cartes pour créer une boucle infinie
+  // Clone cards for infinite loop
   const cards = Array.from(track.children);
   cards.forEach(card => track.appendChild(card.cloneNode(true)));
   cards.forEach(card => track.appendChild(card.cloneNode(true)));
 
   const GAP = 0;
-  let cardWidth = 0;
-  let loopWidth = 0;
+  let cardWidth = 280;
+  let loopWidth = cardWidth * cards.length;
 
   function measure() {
-    cardWidth = track.children[0].offsetWidth + GAP;
-    loopWidth = cardWidth * cards.length;
-    // Start in the middle set so we can scroll both ways
-    if (position === 0) {
+    if (track.children[0]) {
+      cardWidth = track.children[0].offsetWidth + GAP;
+      loopWidth = cardWidth * cards.length;
+      // Start in middle set
       position = loopWidth;
+      currentX = loopWidth;
       track.style.transform = `translateX(${-position}px)`;
     }
   }
@@ -2418,11 +2419,16 @@ function setLang(lang) {
   let animFrame = null;
   let position = 0;
 
+  function normalise(x) {
+    // Keep position always within the middle set range
+    if (loopWidth <= 0) return x;
+    while (x >= loopWidth * 2) x -= loopWidth;
+    while (x < loopWidth) x += loopWidth;
+    return x;
+  }
+
   function setPosition(x) {
-    position = x;
-    // Infinite loop: seamlessly jump when out of bounds
-    if (position >= loopWidth * 2) position -= loopWidth;
-    if (position < loopWidth) position += loopWidth;
+    position = normalise(x);
     track.style.transform = `translateX(${-position}px)`;
   }
 
@@ -2439,8 +2445,8 @@ function setLang(lang) {
   function moveDrag(x) {
     if (!isDragging) return;
     const now = Date.now();
-    const dt = now - lastTime || 1;
-    velocity = (x - lastX) / dt * 16;
+    const dt = Math.max(now - lastTime, 1);
+    velocity = (lastX - x) / dt * 16;
     lastX = x;
     lastTime = now;
     setPosition(currentX + (startX - x));
@@ -2457,7 +2463,7 @@ function setLang(lang) {
   function applyInertia() {
     if (Math.abs(velocity) < 0.3) { velocity = 0; return; }
     velocity *= 0.92;
-    currentX -= velocity;
+    currentX += velocity;
     setPosition(currentX);
     animFrame = requestAnimationFrame(applyInertia);
   }
@@ -2469,12 +2475,11 @@ function setLang(lang) {
 
   // Touch
   wrapper.addEventListener('touchstart', e => { startDrag(e.touches[0].clientX); }, {passive:true});
-  wrapper.addEventListener('touchmove', e => { moveDrag(e.touches[0].clientX); }, {passive:true});
-  wrapper.addEventListener('touchend', () => { currentX = position; endDrag(); });
+  wrapper.addEventListener('touchmove', e => { if (isDragging) moveDrag(e.touches[0].clientX); }, {passive:true});
+  wrapper.addEventListener('touchend', () => { if (isDragging) { currentX = position; endDrag(); } });
 
-  // Init after fonts/images load
   window.addEventListener('load', measure);
-  setTimeout(measure, 300);
+  setTimeout(measure, 100);
 })();
 
 // Init language
