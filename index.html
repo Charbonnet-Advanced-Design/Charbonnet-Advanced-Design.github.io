@@ -742,6 +742,16 @@ section { position: relative; z-index: 1; }
   margin-bottom: 16px;
   display: block;
 }
+.cible-icon-svg {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 20px;
+  color: var(--teal);
+}
+.cible-icon-svg svg {
+  width: 100%;
+  height: 100%;
+}
 .cible-title {
   font-family: var(--font-display);
   font-size: 22px;
@@ -1534,31 +1544,49 @@ footer {
     </div>
     <div class="cibles-grid">
       <div class="cible-card reveal">
-        <span class="cible-icon">🏭</span>
+        <div class="cible-icon-svg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="20" height="15" rx="1"/>
+          <path d="M16 7V4a1 1 0 00-1-1H9a1 1 0 00-1 1v3"/>
+          <line x1="12" y1="12" x2="12" y2="17"/>
+          <line x1="8" y1="12" x2="8" y2="17"/>
+          <line x1="16" y1="12" x2="16" y2="17"/>
+        </svg>
+      </div>
         <div class="cible-title" id="ct1">PME Industrielles</div>
         <div class="cible-desc" id="cd1">Vous usinaez des pièces mais n'avez pas de bureau d'études en interne. Nous sommes votre bureau d'études externalisé.</div>
         <ul class="cible-list">
-          <li id="cl1-1">Reconstruction de pièces sans plan</li>
+          <li id="cl1-1">Reconstruction de pièces</li>
           <li id="cl1-2">Dossiers techniques complets</li>
           <li id="cl1-3">Conseil usinabilité sur mesure</li>
         </ul>
       </div>
       <div class="cible-card reveal reveal-delay-1">
-        <span class="cible-icon">⚙️</span>
+        <div class="cible-icon-svg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+        </svg>
+      </div>
         <div class="cible-title" id="ct2">Artisans & Indépendants</div>
         <div class="cible-desc" id="cd2">Vous avez un projet de pièce mécanique et avez besoin d'un fichier propre pour votre sous-traitant ou votre propre machine.</div>
         <ul class="cible-list">
           <li id="cl2-1">Mise en plan normée ISO</li>
-          <li id="cl2-2">Fichiers STEP/DXF livrables</li>
+          <li id="cl2-2">Fichiers STEP/PDF livrables</li>
           <li id="cl2-3">Tarif adapté aux petits volumes</li>
         </ul>
       </div>
       <div class="cible-card reveal reveal-delay-2">
-        <span class="cible-icon">🎓</span>
-        <div class="cible-title" id="ct3">Étudiants & Particuliers</div>
-        <div class="cible-desc" id="cd3">Projet scolaire, mémoire de fin d'études, prototype personnel — nous vous accompagnons avec un regard professionnel et un tarif accessible.</div>
+        <div class="cible-icon-svg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+        </svg>
+      </div>
+        <div class="cible-title" id="ct3">Particuliers</div>
+        <div class="cible-desc" id="cd3">Projet, études, prototype personnel — nous vous accompagnons avec un regard professionnel et un tarif accessible.</div>
         <ul class="cible-list">
-          <li id="cl3-1">Projets de BTS / BUT / Master</li>
+          <li id="cl3-1">Projets</li>
           <li id="cl3-2">Prototypes impression 3D / usinage</li>
           <li id="cl3-3">Accompagnement méthodologique</li>
         </ul>
@@ -1917,10 +1945,10 @@ const T = {
     'clients-title-el': 'À qui nous nous <em>adressons</em>',
     'ct1': 'PME Industrielles',
     'ct2': 'Artisans & Indépendants',
-    'ct3': 'Étudiants & Particuliers',
+    'ct3': 'Particuliers',
     'cd1': "Vous usinaez des pièces mais n'avez pas de bureau d'études en interne. Nous sommes votre bureau d'études externalisé.",
     'cd2': "Vous avez un projet de pièce mécanique et avez besoin d'un fichier propre pour votre sous-traitant ou votre propre machine.",
-    'cd3': "Projet scolaire, mémoire de fin d'études, prototype personnel — nous vous accompagnons avec un regard professionnel et un tarif accessible.",
+    'cd3': 'Projet, études, prototype personnel — nous vous accompagnons avec un regard professionnel et un tarif accessible.',
     'contact-tag-el': 'Contact',
     'contact-title-el': 'Parlons de<br>votre <em>projet</em>',
     'contact-sub-el': "Un devis est gratuit et sans engagement. Envoyez-nous votre besoin et nous reviendrons vers vous sous 48h avec une proposition chiffrée.",
@@ -1949,13 +1977,13 @@ const T = {
     'mob-nav-expertise': 'Expertise',
     'mob-nav-process': 'Processus',
 
-    'cl1-1': 'Reconstruction de pièces sans plan',
+    'cl1-1': 'Reconstruction de pièces',
     'cl1-2': 'Dossiers techniques complets',
     'cl1-3': 'Conseil usinabilité sur mesure',
     'cl2-1': 'Mise en plan normée ISO',
-    'cl2-2': 'Fichiers STEP/DXF livrables',
+    'cl2-2': 'Fichiers STEP/PDF livrables',
     'cl2-3': 'Tarif adapté aux petits volumes',
-    'cl3-1': 'Projets de BTS / BUT / Master',
+    'cl3-1': 'Projets',
     'cl3-2': 'Prototypes impression 3D / usinage',
     'cl3-3': 'Accompagnement méthodologique',
     'fl-s1': 'Reconstruction CAO',
@@ -2071,10 +2099,10 @@ const T = {
     'clients-title-el': 'Who we <em>work with</em>',
     'ct1': 'Industrial SMEs',
     'ct2': 'Craftsmen & Independents',
-    'ct3': 'Students & Individuals',
+    'ct3': 'Individuals',
     'cd1': 'You machine parts but have no in-house design office. We are your outsourced design bureau.',
     'cd2': 'You have a mechanical part project and need a clean file for your subcontractor or your own machine.',
-    'cd3': 'School project, end-of-study thesis, personal prototype — we guide you with a professional eye and accessible rates.',
+    'cd3': 'Project, studies, personal prototype — we guide you with a professional eye and accessible rates.',
     'contact-tag-el': 'Contact',
     'contact-title-el': "Let's talk about<br>your <em>project</em>",
     'contact-sub-el': 'A quote is free and non-binding. Send us your need and we will get back to you within 48h with a detailed proposal.',
@@ -2103,13 +2131,13 @@ const T = {
     'mob-nav-expertise': 'Expertise',
     'mob-nav-process': 'Process',
 
-    'cl1-1': 'CAD reconstruction from drawing',
+    'cl1-1': 'Part reconstruction',
     'cl1-2': 'Complete technical packages',
     'cl1-3': 'Custom machinability consulting',
     'cl2-1': 'ISO normalised technical drawing',
-    'cl2-2': 'STEP/DXF deliverable files',
+    'cl2-2': 'STEP/PDF deliverable files',
     'cl2-3': 'Rates adapted to small volumes',
-    'cl3-1': 'HND / Bachelor / Master projects',
+    'cl3-1': 'Projects',
     'cl3-2': '3D printing / machining prototypes',
     'cl3-3': 'Methodological support',
     'fl-s1': 'CAD Reconstruction',
