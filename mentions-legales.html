@@ -67,16 +67,20 @@ footer-ml{display:block;text-align:center;padding:32px;font-size:12px;color:var(
     <span class="nav-logo-cad">CAD</span>
     <span class="nav-logo-full">Charbonnet Advanced Design</span>
   </a>
-  <a href="index.html" class="back-link">
+  <div style="display:flex;gap:6px;align-items:center;margin-right:16px">
+    <button onclick="setLang('fr')" id="btn-fr" style="padding:4px 12px;border:1.5px solid #00b8a6;background:#00b8a6;color:white;border-radius:4px;cursor:pointer;font-weight:700;font-size:11px;font-family:monospace">FR</button>
+    <button onclick="setLang('en')" id="btn-en" style="padding:4px 12px;border:1.5px solid #ccc;background:none;color:#888;border-radius:4px;cursor:pointer;font-weight:700;font-size:11px;font-family:monospace">EN</button>
+  </div>
+  <a href="index.html" class="back-link" id="back-btn">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     Retour au site
-  </a>
+    </a>
 </nav>
 
 <div class="container">
 
-  <div class="page-title">Mentions légales</div>
-  <div class="page-sub">// mentions_legales.md · Dernière mise à jour : mars 2026</div>
+  <div class="page-title" id="ml-title">Mentions légales</div>
+  <div class="page-sub" id="ml-sub">// mentions_legales.md · Dernière mise à jour : mars 2026</div>
 
   <!-- ÉDITEUR -->
   <div class="section">
