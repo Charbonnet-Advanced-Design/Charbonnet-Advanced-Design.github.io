@@ -11,53 +11,42 @@
 :root{
   --teal:#00b8a6;--teal2:#009688;
   --light:#1a2332;--muted:#5a6e85;--muted2:#8a9db5;
-  --bg:#f5f7f9;--surface:#ffffff;
+  --bg:#f5f7f9;
   --border:rgba(0,0,0,0.08);
   --font-display:'Barlow Condensed',sans-serif;
   --font-body:'Barlow',sans-serif;
   --font-mono:'JetBrains Mono',monospace;
 }
+*{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-body);background:var(--bg);color:var(--light);line-height:1.7;font-size:15px}
-nav{
-  background:#ffffff;border-bottom:1px solid var(--border);
-  padding:0 32px;height:68px;display:flex;align-items:center;
-  justify-content:space-between;position:sticky;top:0;z-index:10;
-}
+nav{background:#fff;border-bottom:1px solid var(--border);padding:0 32px;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
 .nav-logo{display:flex;align-items:baseline;gap:10px;text-decoration:none}
 .nav-logo-cad{font-family:var(--font-display);font-size:26px;font-weight:800;color:var(--teal);letter-spacing:2px}
 .nav-logo-full{font-size:11px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
-.back-link{font-size:13px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .15s}
+.nav-right{display:flex;align-items:center;gap:16px}
+.lang-switch{display:flex;gap:6px}
+.lang-btn{padding:4px 12px;border:1.5px solid #ccc;background:none;color:#888;border-radius:4px;cursor:pointer;font-weight:700;font-size:11px;font-family:monospace;transition:all .15s}
+.lang-btn.active{background:var(--teal);border-color:var(--teal);color:#fff}
+.back-link{font-size:13px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .15s;white-space:nowrap}
 .back-link:hover{color:var(--teal)}
+@media(max-width:600px){.nav-logo-full{display:none}}
 .container{max-width:760px;margin:0 auto;padding:60px 32px 80px}
 @media(max-width:600px){.container{padding:40px 20px 60px}}
-.page-title{
-  font-family:var(--font-display);font-size:48px;font-weight:800;
-  color:var(--light);letter-spacing:-.5px;margin-bottom:8px;
-}
+.page-title{font-family:var(--font-display);font-size:48px;font-weight:800;color:var(--light);letter-spacing:-.5px;margin-bottom:8px}
 .page-sub{font-size:13px;color:var(--muted);font-family:var(--font-mono);margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--border)}
 .section{margin-bottom:40px}
-.section-title{
-  font-family:var(--font-display);font-size:22px;font-weight:700;
-  color:var(--teal);margin-bottom:16px;letter-spacing:.3px;
-  padding-bottom:8px;border-bottom:1px solid rgba(0,184,166,0.2);
-}
+.section-title{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--teal);margin-bottom:16px;letter-spacing:.3px;padding-bottom:8px;border-bottom:1px solid rgba(0,184,166,0.2)}
 p{margin-bottom:12px;color:var(--muted)}
 strong{color:var(--light);font-weight:600}
-.info-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:16px;
-  background:#ffffff;border:1px solid var(--border);
-  border-radius:8px;padding:24px;margin-bottom:16px;
-}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:24px;margin-bottom:16px}
 @media(max-width:500px){.info-grid{grid-template-columns:1fr}}
 .info-item label{font-size:11px;color:var(--muted2);text-transform:uppercase;letter-spacing:1px;font-family:var(--font-mono);display:block;margin-bottom:4px}
 .info-item span{font-size:14px;color:var(--light);font-weight:500}
-.highlight{
-  background:rgba(0,184,166,0.06);border-left:3px solid var(--teal);
-  border-radius:0 6px 6px 0;padding:14px 18px;margin:16px 0;
-  font-size:13px;color:var(--muted);
-}
+.highlight{background:rgba(0,184,166,0.06);border-left:3px solid var(--teal);border-radius:0 6px 6px 0;padding:14px 18px;margin:16px 0;font-size:13px;color:var(--muted)}
 .highlight strong{color:var(--teal)}
-footer-ml{display:block;text-align:center;padding:32px;font-size:12px;color:var(--muted2);border-top:1px solid var(--border)}
+.page-footer{text-align:center;padding:32px;font-size:12px;color:var(--muted2);border-top:1px solid var(--border)}
 </style>
 </head>
 <body>
@@ -67,14 +56,16 @@ footer-ml{display:block;text-align:center;padding:32px;font-size:12px;color:var(
     <span class="nav-logo-cad">CAD</span>
     <span class="nav-logo-full">Charbonnet Advanced Design</span>
   </a>
-  <div style="display:flex;gap:6px;align-items:center;margin-right:16px">
-    <button onclick="setLang('fr')" id="btn-fr" style="padding:4px 12px;border:1.5px solid #00b8a6;background:#00b8a6;color:white;border-radius:4px;cursor:pointer;font-weight:700;font-size:11px;font-family:monospace">FR</button>
-    <button onclick="setLang('en')" id="btn-en" style="padding:4px 12px;border:1.5px solid #ccc;background:none;color:#888;border-radius:4px;cursor:pointer;font-weight:700;font-size:11px;font-family:monospace">EN</button>
-  </div>
-  <a href="index.html" class="back-link" id="back-btn">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    Retour au site
+  <div class="nav-right">
+    <div class="lang-switch">
+      <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="index.html" class="back-link" id="back-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <span id="back-label">Retour au site</span>
     </a>
+  </div>
 </nav>
 
 <div class="container">
@@ -84,72 +75,169 @@ footer-ml{display:block;text-align:center;padding:32px;font-size:12px;color:var(
 
   <!-- ÉDITEUR -->
   <div class="section">
-    <div class="section-title">Éditeur du site</div>
+    <div class="section-title" id="s-editor">Éditeur du site</div>
     <div class="info-grid">
-      <div class="info-item"><label>Nom</label><span>Paul Jean-Bernard Charbonnet</span></div>
-      <div class="info-item"><label>Dénomination commerciale</label><span>Charbonnet Advanced Design</span></div>
-      <div class="info-item"><label>Forme juridique</label><span>Entrepreneur individuel</span></div>
+      <div class="info-item"><label id="l-nom">Nom</label><span>Paul Jean-Bernard Charbonnet</span></div>
+      <div class="info-item"><label id="l-denom">Dénomination commerciale</label><span>Charbonnet Advanced Design</span></div>
+      <div class="info-item"><label id="l-forme">Forme juridique</label><span id="v-forme">Entrepreneur individuel</span></div>
       <div class="info-item"><label>SIREN</label><span>102 538 485</span></div>
       <div class="info-item"><label>SIRET</label><span>102 538 485 00016</span></div>
-      <div class="info-item"><label>Code APE</label><span>7112B — Ingénierie, études techniques</span></div>
-      <div class="info-item"><label>Adresse</label><span>8 Place des Dames, 16100 Cognac, France</span></div>
-      <div class="info-item"><label>Email</label><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="62010d0c1603011622010a0310000d0c0c07164f030614030c0107064f0607110b050c4c0410">[email&#160;protected]</a></span></div>
-      <div class="info-item"><label>Téléphone</label><span>06 14 28 20 34</span></div>
-      <div class="info-item"><label>Date de création</label><span>17 mars 2026</span></div>
+      <div class="info-item"><label id="l-ape">Code APE</label><span id="v-ape">7112B — Ingénierie, études techniques</span></div>
+      <div class="info-item"><label id="l-adresse">Adresse</label><span>8 Place des Dames, 16100 Cognac, France</span></div>
+      <div class="info-item"><label>Email</label><span><a href="mailto:contact@charbonnet-advanced-design.fr">contact@charbonnet-advanced-design.fr</a></span></div>
+      <div class="info-item"><label id="l-tel">Téléphone</label><span>+33 6 14 28 20 34</span></div>
+      <div class="info-item"><label id="l-creation">Date de création</label><span id="v-creation">17 mars 2026</span></div>
     </div>
-    <div class="highlight">
-      <strong>TVA non applicable</strong> — Conformément à l'article 293 B du Code Général des Impôts, en tant que micro-entreprise en franchise de base de TVA, aucune TVA n'est facturée.
+    <div class="highlight" id="tva-highlight">
+      <strong id="tva-label">TVA non applicable</strong> — <span id="tva-text">Conformément à l'article 293 B du Code Général des Impôts, en tant que micro-entreprise en franchise de base de TVA, aucune TVA n'est facturée.</span>
     </div>
   </div>
 
   <!-- HÉBERGEMENT -->
   <div class="section">
-    <div class="section-title">Hébergement</div>
+    <div class="section-title" id="s-hosting">Hébergement</div>
     <div class="info-grid">
-      <div class="info-item"><label>Hébergeur</label><span>GitHub, Inc.</span></div>
-      <div class="info-item"><label>Service</label><span>GitHub Pages</span></div>
-      <div class="info-item"><label>Adresse</label><span>88 Colin P Kelly Jr St, San Francisco, CA 94107, États-Unis</span></div>
-      <div class="info-item"><label>Site</label><span>github.com</span></div>
+      <div class="info-item"><label id="l-host">Hébergeur</label><span>GitHub, Inc.</span></div>
+      <div class="info-item"><label id="l-service">Service</label><span>GitHub Pages</span></div>
+      <div class="info-item"><label id="l-hostaddr">Adresse</label><span>88 Colin P Kelly Jr St, San Francisco, CA 94107, États-Unis</span></div>
+      <div class="info-item"><label id="l-site">Site</label><span>github.com</span></div>
     </div>
-    <p>Le nom de domaine <strong>charbonnet-advanced-design.fr</strong> est enregistré auprès de OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.</p>
+    <p id="p-domain">Le nom de domaine <strong>charbonnet-advanced-design.fr</strong> est enregistré auprès de OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.</p>
   </div>
 
   <!-- PROPRIÉTÉ INTELLECTUELLE -->
   <div class="section">
-    <div class="section-title">Propriété intellectuelle</div>
-    <p>L'ensemble du contenu de ce site (textes, graphismes, logo, structure) est la propriété exclusive de <strong>Paul Charbonnet — Charbonnet Advanced Design</strong>.</p>
-    <p>Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans autorisation écrite préalable.</p>
+    <div class="section-title" id="s-ip">Propriété intellectuelle</div>
+    <p id="p-ip1">L'ensemble du contenu de ce site (textes, graphismes, logo, structure) est la propriété exclusive de <strong>Paul Charbonnet — Charbonnet Advanced Design</strong>.</p>
+    <p id="p-ip2">Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans autorisation écrite préalable.</p>
   </div>
 
   <!-- DONNÉES PERSONNELLES -->
   <div class="section">
-    <div class="section-title">Données personnelles (RGPD)</div>
-    <p>Les données collectées via le formulaire de contact (nom, email, description du besoin) sont utilisées <strong>uniquement pour répondre à votre demande de devis</strong> et ne sont jamais transmises à des tiers.</p>
-    <p>Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ces droits, contactez-nous à <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bfdcd0d1cbdedccbffdcd7decdddd0d1d1dacb92dedbc9ded1dcdadb92dbdaccd6d8d191d9cd">[email&#160;protected]</a></strong>.</p>
-    <p>Les données sont conservées pour une durée maximale de <strong>3 ans</strong> à compter du dernier contact.</p>
-    <p>Le formulaire de contact utilise le service <strong>Formspree</strong> (formspree.io) pour le traitement des envois. Formspree est un sous-traitant conforme au RGPD.</p>
+    <div class="section-title" id="s-rgpd">Données personnelles (RGPD)</div>
+    <p id="p-rgpd1">Les données collectées via le formulaire de contact (nom, email, description du besoin) sont utilisées <strong id="rgpd-strong">uniquement pour répondre à votre demande de devis</strong> et ne sont jamais transmises à des tiers.</p>
+    <p id="p-rgpd2">Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ces droits, contactez-nous à <a href="mailto:contact@charbonnet-advanced-design.fr">contact@charbonnet-advanced-design.fr</a>.</p>
+    <p id="p-rgpd3">Les données sont conservées pour une durée maximale de <strong>3 ans</strong> à compter du dernier contact.</p>
+    <p id="p-rgpd4">Le formulaire de contact utilise le service <strong>Formsubmit</strong> (formsubmit.co) pour le traitement des envois. Formsubmit est un service tiers conforme au RGPD.</p>
   </div>
 
   <!-- COOKIES -->
   <div class="section">
-    <div class="section-title">Cookies</div>
-    <p>Ce site utilise uniquement un <strong>cookie technique de préférence de langue</strong> (localStorage) qui ne collecte aucune donnée personnelle et ne nécessite pas de consentement au sens du RGPD.</p>
-    <p>Aucun cookie publicitaire ou de traçage tiers n'est utilisé sur ce site.</p>
+    <div class="section-title" id="s-cookies">Cookies</div>
+    <p id="p-cookies1">Ce site utilise uniquement un <strong>cookie technique de préférence de langue</strong> (localStorage) qui ne collecte aucune donnée personnelle et ne nécessite pas de consentement au sens du RGPD.</p>
+    <p id="p-cookies2">Aucun cookie publicitaire ou de traçage tiers n'est utilisé sur ce site.</p>
   </div>
 
   <!-- RESPONSABILITÉ -->
   <div class="section">
-    <div class="section-title">Limitation de responsabilité</div>
-    <p>Les informations contenues sur ce site sont données à titre indicatif. <strong>Charbonnet Advanced Design</strong> ne peut être tenu responsable d'erreurs ou d'omissions dans le contenu du site, ni des dommages directs ou indirects résultant de l'accès ou de l'utilisation du site.</p>
-    <p>Des liens vers des sites tiers peuvent être présents. Charbonnet Advanced Design n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.</p>
+    <div class="section-title" id="s-liability">Limitation de responsabilité</div>
+    <p id="p-liab1">Les informations contenues sur ce site sont données à titre indicatif. <strong>Charbonnet Advanced Design</strong> ne peut être tenu responsable d'erreurs ou d'omissions dans le contenu du site, ni des dommages directs ou indirects résultant de l'accès ou de l'utilisation du site.</p>
+    <p id="p-liab2">Des liens vers des sites tiers peuvent être présents. Charbonnet Advanced Design n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.</p>
   </div>
 
   <!-- DROIT APPLICABLE -->
   <div class="section">
-    <div class="section-title">Droit applicable</div>
-    <p>Le présent site et ses mentions légales sont soumis au <strong>droit français</strong>. En cas de litige, les tribunaux français seront seuls compétents.</p>
+    <div class="section-title" id="s-law">Droit applicable</div>
+    <p id="p-law">Le présent site et ses mentions légales sont soumis au <strong>droit français</strong>. En cas de litige, les tribunaux français seront seuls compétents.</p>
   </div>
 
 </div>
 
-<div style="text-ali
+<div class="page-footer">
+  © 2026 Charbonnet Advanced Design · SIREN 102538485 · <a href="index.html">charbonnet-advanced-design.fr</a>
+</div>
+
+<script>
+const T = {
+  fr: {
+    title: 'Mentions légales · Charbonnet Advanced Design',
+    'ml-title': 'Mentions légales',
+    'ml-sub': '// mentions_legales.md · Dernière mise à jour : mars 2026',
+    'back-label': 'Retour au site',
+    's-editor': 'Éditeur du site',
+    'l-nom': 'Nom', 'l-denom': 'Dénomination commerciale',
+    'l-forme': 'Forme juridique', 'v-forme': 'Entrepreneur individuel',
+    'l-ape': 'Code APE', 'v-ape': '7112B — Ingénierie, études techniques',
+    'l-adresse': 'Adresse', 'l-tel': 'Téléphone',
+    'l-creation': 'Date de création', 'v-creation': '17 mars 2026',
+    'tva-label': 'TVA non applicable',
+    'tva-text': "Conformément à l'article 293 B du Code Général des Impôts, en tant que micro-entreprise en franchise de base de TVA, aucune TVA n'est facturée.",
+    's-hosting': 'Hébergement',
+    'l-host': 'Hébergeur', 'l-service': 'Service',
+    'l-hostaddr': 'Adresse', 'l-site': 'Site',
+    'p-domain': 'Le nom de domaine charbonnet-advanced-design.fr est enregistré auprès de OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.',
+    's-ip': 'Propriété intellectuelle',
+    'p-ip1': "L'ensemble du contenu de ce site (textes, graphismes, logo, structure) est la propriété exclusive de Paul Charbonnet — Charbonnet Advanced Design.",
+    'p-ip2': "Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans autorisation écrite préalable.",
+    's-rgpd': 'Données personnelles (RGPD)',
+    'p-rgpd1': "Les données collectées via le formulaire de contact (nom, email, description du besoin) sont utilisées uniquement pour répondre à votre demande de devis et ne sont jamais transmises à des tiers.",
+    'rgpd-strong': 'uniquement pour répondre à votre demande de devis',
+    'p-rgpd2': "Conformément au RGPD et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ces droits, contactez-nous à contact@charbonnet-advanced-design.fr.",
+    'p-rgpd3': 'Les données sont conservées pour une durée maximale de 3 ans à compter du dernier contact.',
+    'p-rgpd4': 'Le formulaire de contact utilise le service Formsubmit (formsubmit.co) pour le traitement des envois. Formsubmit est un service tiers conforme au RGPD.',
+    's-cookies': 'Cookies',
+    'p-cookies1': 'Ce site utilise uniquement un cookie technique de préférence de langue (localStorage) qui ne collecte aucune donnée personnelle et ne nécessite pas de consentement au sens du RGPD.',
+    'p-cookies2': "Aucun cookie publicitaire ou de traçage tiers n'est utilisé sur ce site.",
+    's-liability': 'Limitation de responsabilité',
+    'p-liab1': "Les informations contenues sur ce site sont données à titre indicatif. Charbonnet Advanced Design ne peut être tenu responsable d'erreurs ou d'omissions dans le contenu du site, ni des dommages directs ou indirects résultant de l'accès ou de l'utilisation du site.",
+    'p-liab2': "Des liens vers des sites tiers peuvent être présents. Charbonnet Advanced Design n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.",
+    's-law': 'Droit applicable',
+    'p-law': 'Le présent site et ses mentions légales sont soumis au droit français. En cas de litige, les tribunaux français seront seuls compétents.',
+  },
+  en: {
+    title: 'Legal notice · Charbonnet Advanced Design',
+    'ml-title': 'Legal notice',
+    'ml-sub': '// legal_notice.md · Last updated: March 2026',
+    'back-label': 'Back to website',
+    's-editor': 'Site publisher',
+    'l-nom': 'Name', 'l-denom': 'Trading name',
+    'l-forme': 'Legal form', 'v-forme': 'Sole trader',
+    'l-ape': 'APE code', 'v-ape': '7112B — Engineering, technical studies',
+    'l-adresse': 'Address', 'l-tel': 'Phone',
+    'l-creation': 'Creation date', 'v-creation': '17 March 2026',
+    'tva-label': 'VAT not applicable',
+    'tva-text': 'Pursuant to article 293 B of the French General Tax Code, as a micro-enterprise under the VAT exemption scheme, no VAT is charged.',
+    's-hosting': 'Hosting',
+    'l-host': 'Host', 'l-service': 'Service',
+    'l-hostaddr': 'Address', 'l-site': 'Website',
+    'p-domain': 'The domain name charbonnet-advanced-design.fr is registered with OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.',
+    's-ip': 'Intellectual property',
+    'p-ip1': 'All content on this site (text, graphics, logo, structure) is the exclusive property of Paul Charbonnet — Charbonnet Advanced Design.',
+    'p-ip2': 'Any reproduction, representation, modification, publication or adaptation of all or part of the elements of the site, by any means or process, is prohibited without prior written authorisation.',
+    's-rgpd': 'Personal data (GDPR)',
+    'p-rgpd1': 'Data collected via the contact form (name, email, description of need) is used solely to respond to your quote request and is never shared with third parties.',
+    'rgpd-strong': 'solely to respond to your quote request',
+    'p-rgpd2': 'In accordance with the GDPR, you have the right to access, rectify and delete your data. To exercise these rights, contact us at contact@charbonnet-advanced-design.fr.',
+    'p-rgpd3': 'Data is retained for a maximum period of 3 years from the last contact.',
+    'p-rgpd4': 'The contact form uses the Formsubmit service (formsubmit.co) to process submissions. Formsubmit is a GDPR-compliant third-party service.',
+    's-cookies': 'Cookies',
+    'p-cookies1': 'This site only uses a technical language preference cookie (localStorage) that collects no personal data and does not require consent under the GDPR.',
+    'p-cookies2': 'No advertising or third-party tracking cookies are used on this site.',
+    's-liability': 'Limitation of liability',
+    'p-liab1': 'The information on this site is provided for informational purposes only. Charbonnet Advanced Design cannot be held responsible for errors or omissions in the site content, or for direct or indirect damages resulting from access to or use of the site.',
+    'p-liab2': 'Links to third-party sites may be present. Charbonnet Advanced Design has no control over these sites and accepts no responsibility for their content.',
+    's-law': 'Applicable law',
+    'p-law': 'This site and its legal notice are subject to French law. In the event of a dispute, French courts shall have sole jurisdiction.',
+  }
+};
+
+function setLang(lang) {
+  const t = T[lang];
+  document.documentElement.lang = lang;
+  document.title = t.title;
+  document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  Object.keys(t).forEach(key => {
+    if (key === 'title') return;
+    const el = document.getElementById(key);
+    if (el) el.textContent = t[key];
+  });
+  try { localStorage.setItem('cad-lang', lang); } catch(e) {}
+}
+
+// Sync with main site language
+const saved = (() => { try { return localStorage.getItem('cad-lang') || 'fr'; } catch(e) { return 'fr'; } })();
+setLang(saved);
+</script>
+</body>
+</html>

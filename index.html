@@ -1225,7 +1225,7 @@ footer {
     <span class="nav-logo-full">Charbonnet Advanced Design</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
+    
     <li><a href="#pourquoi">Expertise</a></li>
     <li><a href="#processus">Processus</a></li>
     <li><a href="#contact" class="nav-cta" data-fr="Demander un devis" data-en="Request a quote">Demander un devis</a></li>
@@ -1886,7 +1886,7 @@ const obs = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 reveals.forEach(el => obs.observe(el));
 
-// Form submit (simulation — à connecter à un backend ou Formspree)
+// Form submit (simulation — à connecter à un backend ou Formsubmit)
 function submitForm() {
   const nom = document.getElementById('fc-nom').value.trim();
   const email = document.getElementById('fc-email').value.trim();
@@ -1917,7 +1917,7 @@ function submitForm() {
   btn.disabled = true;
   btn.style.opacity = '0.7';
 
-  fetch('https://formsubmit.co/ajax/paulcharbonnet@icloud.com', {
+  fetch('https://formsubmit.co/ajax/contact@charbonnet-advanced-design.fr', {
     method: 'POST',
     body: formData
   })
@@ -2479,21 +2479,4 @@ function setLang(lang) {
 
   // Touch
   wrapper.addEventListener('touchstart', e => { startDrag(e.touches[0].clientX); }, {passive:true});
-  wrapper.addEventListener('touchmove', e => { if (isDragging) moveDrag(e.touches[0].clientX); }, {passive:true});
-  wrapper.addEventListener('touchend', () => { if (isDragging) { currentX = position; endDrag(); } });
-
-  window.addEventListener('load', measure);
-  setTimeout(measure, 100);
-})();
-
-// Init language
-let savedLang = 'fr';
-try {
-  const stored = localStorage.getItem('lang');
-  if (stored === 'fr' || stored === 'en') savedLang = stored;
-} catch(e) {}
-setLang(savedLang);
-
-</script>
-</body>
-</html>
+  wrapper.addEventListener('touchmove', e => { if (isDragging) 
