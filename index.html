@@ -80,6 +80,8 @@
 </script>
 
 <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Barlow+Condensed:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -2479,4 +2481,21 @@ function setLang(lang) {
 
   // Touch
   wrapper.addEventListener('touchstart', e => { startDrag(e.touches[0].clientX); }, {passive:true});
-  wrapper.addEventListener('touchmove', e => { if (isDragging) 
+  wrapper.addEventListener('touchmove', e => { if (isDragging) moveDrag(e.touches[0].clientX); }, {passive:true});
+  wrapper.addEventListener('touchend', () => { if (isDragging) { currentX = position; endDrag(); } });
+
+  window.addEventListener('load', measure);
+  setTimeout(measure, 100);
+})();
+
+// Init language
+let savedLang = 'fr';
+try {
+  const stored = localStorage.getItem('cad-lang');
+  if (stored === 'fr' || stored === 'en') savedLang = stored;
+} catch(e) {}
+setLang(savedLang);
+
+</script>
+</body>
+</html>
